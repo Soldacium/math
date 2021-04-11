@@ -1,11 +1,25 @@
 main{
-    width: 100%;
+    width: 100vw;
     overflow-x: hidden;
+
+    .router-wrap{
+        left: 0;
+        position: relative;
+        transition: 0.9s ease;
+        padding: 2rem 5rem;
+        width: 100vw;
+        overflow-x: hidden;
+    }
+
+    .nav:hover+.router-wrap{
+        left: 300px;
+    }
 }
 
 .nav{
     position: fixed;
-    right: 0;
+    left: 0;
     top: 0;
     height: 100%;
+    z-index: 1000;
 }

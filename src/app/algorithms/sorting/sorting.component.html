@@ -1,0 +1,9 @@
+<main>
+    <button (click)="resetArray()">Reset</button>
+    <button (click)="bubbleSort()">Bubble sort</button>
+    <div class="sortingColumns" >
+        <span class="column" *ngFor='let value of dummyArray; index as i' [style.height]='valueArray[i] + "%"'>
+        </span>
+    </div>
+    
+</main>

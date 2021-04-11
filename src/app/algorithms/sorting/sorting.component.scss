@@ -1,0 +1,30 @@
+main{
+    width: 100%;
+    overflow-x: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    
+    .sortingColumns{
+        height: 70vh;
+        width: 70%;
+        position: relative;
+        display: flex;
+        flex-wrap: nowrap;
+        transform: scaleY(-1);
+
+        span{
+            display: flex;
+            flex: 1 1 0.5rem;
+            margin: 1px;
+            background-color: white;
+            transition: 0.5s ease;
+            position: relative;
+            bottom: 0;
+            height: 0%;
+            border-radius: 3px;
+        }
+    }
+
+}

@@ -5,65 +5,98 @@ nav{
     height: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: left;
     background-color: rgb(46, 46, 46);
     transition: 0.5s ease;
+    max-width: 60px;
+    overflow: hidden;
     
-    padding: 1rem 2rem;
+    padding: 1rem 1rem;
     z-index: 100;
 
-    a{
-        background-color: rgb(58, 58, 58);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        transition: 0.2s;
-        padding: 0.5rem;
-        margin: 0.5rem;
-        color: white;
-        text-decoration: none;
+    &:hover{
+        max-width: 250px;
+    }
 
-        img{
-            height: 2rem;
-            width: 2rem;
-            filter: invert(50%);
-            transition: 0.2s;
-        }
+    .field{
+        padding: 0.5rem 0.5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: left;
+        overflow: hidden;
+        flex-wrap: nowrap;
+        width: 100%;
 
         &.active{
-            background-color: rgb(110, 110, 110);
-            img{
-                filter: invert(100%);
+            .concepts{
+                max-height: 200px;
+            }
+
+            >a{
+                img{
+                    &:last-of-type{
+                        transform: rotate(90deg);
+                    }
+                }
             }
         }
-    }
 
-    button{
-        width: 4rem;
-        height: 4rem;
-        background-color: rgb(58, 58, 58);
-        position: absolute;
-        border: none;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        transition: 0.2s;
-        left: 0;
-        bottom: 1rem;
-        cursor: pointer;
+        a{
+            text-decoration: none;
+            font-size: 1rem;
+            color: var(--colorText);
+            margin: 0.5rem 0;
+            opacity: 0.3;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            flex-wrap: nowrap;
+            left: 0;
 
-        img{
-            height: 2rem;
-            width: 2rem;
-            filter: invert(50%);
-            transition: 0.2s;
-        }
+            &.active{
+                opacity: 1;
+            }
 
-        &:hover{
-            background-color: rgb(110, 110, 110);
+            span{
+                white-space: nowrap;
+            }
+
             img{
-               filter: invert(100%); 
-            }  
+                height: 1rem;
+                filter: invert(100%);
+                transition: 0.3s ease;
+
+                &:first-of-type{
+                    margin-right: 1rem;
+                }
+
+                &:last-of-type{
+                    margin-left: 1rem;
+                }
+            }
         }
+
+        .concepts{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: left;
+            margin-left: 2rem;
+            max-height: 0;
+            transition: 0.4s ease;
+            overflow: hidden;
+
+            a{
+                font-size: 1rem;
+            }
+        }
+
+        
     }
+
+    .square{
+
+    }
+
 }

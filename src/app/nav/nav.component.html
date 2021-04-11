@@ -1,8 +1,48 @@
 <nav>
-    <a [routerLink]='["algorithms"]' routerLinkActive="active">
-        algorithms
-    </a>
-    <a [routerLink]='["algorithms/hanoi"]' routerLinkActive="active">
-        hanoi
-    </a>
+    <div class="field" [ngClass]="{'active': checkIfActive('algorithms')}">
+        <a [routerLink]='["algorithms"]' (click)='addActiveCategory("algorithms")' routerLinkActive="active"> 
+            <img src="assets/icons/algorithms.svg" alt="">
+            <span>Algorithms</span> 
+            <img src="assets/icons/arrow-right.svg" alt="">
+        </a>
+        <div class="concepts">
+            <a [routerLink]='["algorithms/hanoi"]' routerLinkActive="active">Hanoi</a>
+            <a [routerLink]='["algorithms/sorting"]' routerLinkActive="active">Sorting</a>
+            <a [routerLink]='["algorithms/hanoi"]' routerLinkActive="active">Monte carlo</a>
+        </div>
+        <span class="square">
+
+        </span>
+    </div>
+    <div class="field" [ngClass]="{'active': checkIfActive('chaos')}">
+        <a [routerLink]='["algorithms"]' (click)='addActiveCategory("chaos")' routerLinkActive="active"> 
+            <img src="assets/icons/chaosTheory.svg" alt="">
+            <span>Dynamical systems</span> 
+            <img src="assets/icons/arrow-right.svg" alt="">
+        </a>
+        <div class="concepts">
+            <a [routerLink]='["algorithms/hanoi"]' routerLinkActive="active">Lorenz attractor</a>
+            <a [routerLink]='["algorithms/hanoi"]' routerLinkActive="active">Ablion sandpile</a>
+            <a [routerLink]='["algorithms/hanoi"]' routerLinkActive="active">Double pendulum</a>
+        </div>
+        <span class="square">
+
+        </span>
+    </div>
+    <div class="field" [ngClass]="{'active': checkIfActive('combinatorics')}">
+        <a [routerLink]='["algorithms"]' (click)='addActiveCategory("combinatorics")' routerLinkActive="active"> 
+            <img src="assets/icons/graphTheory.svg" alt="">
+            <span>Combinatorics</span> 
+            <img src="assets/icons/arrow-right.svg" alt="">
+        </a>
+        <div class="concepts">
+            <a [routerLink]='["algorithms/hanoi"]' routerLinkActive="active">Pathfinding</a>
+            <a [routerLink]='["algorithms/hanoi"]' routerLinkActive="active">Knight's tour</a>
+        </div>
+        <span class="square">
+
+        </span>
+    </div>
+
+
 </nav>
