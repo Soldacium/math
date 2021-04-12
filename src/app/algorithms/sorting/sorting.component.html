@@ -1,8 +1,28 @@
 <main>
     <button (click)="resetArray()">Reset</button>
-    <button (click)="bubbleSort()">Bubble sort</button>
+    <button (click)="stopAnimation = false;bubbleSort()">Bubble sort</button>
+    <button (click)="stopAnimation = false;quickSort(valueArray, 0, valueArray.length - 1);">Quick sort</button>
+    <button (click)="stopAnimation = false;getMergedArray(valueArray)">Merge sort</button>
+    <div class="slidecontainer">
+        Function slowdown
+        <input type="range" min="0" max="500" value="50" class="slider" id="myRange" [(ngModel)]="animationSpeed">
+    </div>
+    <div class="slidecontainer">
+        Transition duration
+        <input type="range" min="0" max="0.5" value="0.3" step="0.01" class="slider" id="myRange" [(ngModel)]="transitionSpeed">
+    </div>
+    <div class="slidecontainer">
+        Array size
+        <input type="range" min="8" max="200" value="100" step="1" class="slider" id="myRange" [(ngModel)]="arraySize" (input)="reinitializeArrays()">
+    </div>
+    <div>{{swaps}}</div>
     <div class="sortingColumns" >
-        <span class="column" *ngFor='let value of dummyArray; index as i' [style.height]='valueArray[i] + "%"'>
+        <span 
+        class="column" 
+        *ngFor='let value of dummyArray; index as i' 
+        [style.height]='valueArray[i] + "%"'
+        [style.transition-duration] ='transitionSpeed + "s"'
+        [ngClass]='activeColumns.includes(i) ? "active": "normal"'>
         </span>
     </div>
     

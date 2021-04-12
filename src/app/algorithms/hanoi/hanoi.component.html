@@ -1,1 +1,7 @@
-<p>hanoi works!</p>
+<main>
+    <button (click)="hanoiAlgorithm()">Calc hanoi</button>
+    <div class="slidecontainer">
+        Function slowdown
+        <input type="range" min="0" max="500" value="50" class="slider" id="myRange" [(ngModel)]="animationSpeed">
+    </div>
+</main>

@@ -52,6 +52,7 @@ nav{
             display: flex;
             align-items: center;
             flex-wrap: nowrap;
+            white-space: nowrap;
             left: 0;
 
             &.active{

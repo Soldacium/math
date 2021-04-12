@@ -7,46 +7,149 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SortingComponent implements OnInit {
   arraySize = 100;
+  animationSpeed = 50;
+  transitionSpeed = 0.3;
+  swaps = 0;
+  stopAnimation = true;
+  activeColumns = [-1, -1];
   dummyArray: number[] = new Array(this.arraySize).fill(0);
   valueArray: number[] = new Array(this.arraySize).fill(0);
 
   constructor() { }
 
   ngOnInit(): void {
-    this.valueArray = this.valueArray.map(x => Math.floor(Math.random() * 100))
+    this.valueArray = this.valueArray.map(x => Math.floor(Math.random() * 100));
+  }
+
+  reinitializeArrays(): void{
+    this.setBasicState();
+    this.valueArray = new Array(this.arraySize).fill(0).map(x => Math.floor(Math.random() * 100));
+    this.dummyArray = new Array(this.arraySize).fill(0);
   }
 
   resetArray(): void {
+    this.setBasicState();
     this.randomizeSingleValue(this.valueArray.length);
   }
 
+  setBasicState(): void {
+    this.activeColumns = [-1, -1];
+    this.stopAnimation = true;
+    this.swaps = 0;
+  }
+
   randomizeSingleValue(index: number): void {
-    if (index > 0) {
-      setTimeout(() => {
+    if (index >= 0) {
+      this.wait(25).then(res => {
         this.valueArray[index] = Math.floor(Math.random() * 100);
+        this.activeColumns[0] = index;
         return this.randomizeSingleValue(index - 1);
-      }, 15);
+      });
+    }else{
+      this.activeColumns[0] = -1;
     }
   }
 
   // "needs" recursion for animations
-  bubbleSort(){
-    for(let i = 0; i < this.arraySize; i--){
-
-    }
-  }
-
-  bubble(index: number, highestValue: number){
-    if(index > 2){
-      if(highestValue < this.valueArray[index]){
-        highestValue = this.valueArray[index]
+  async bubbleSort(): Promise<void>{
+    for (let i = this.arraySize; i > 0; i--){
+      if(!this.stopAnimation){
+        await this.bubble(i);
       }
+    }
+  }
 
-      setTimeout(() => {
-        this.bubble(index - 1, highestValue);
-      }, 10);
+  async bubble(maxIndex: number): Promise<void>{
+    for (let i = 0; i < maxIndex; i++) {
+      if (this.valueArray[i + 1] < this.valueArray[i]){
+        await this.swap(this.valueArray, i, i + 1);
+      }
+    }
+  }
+
+  async quickSort(items: number[], left: number, right: number): Promise<number[]> {
+    let index = 0;
+    if (items.length > 1 && this.stopAnimation === false) {
+      index = await this.partition(items, left, right); // index returned from partition
+      if (left < index - 1) { // more elements on the left side of the pivot
+        await this.quickSort(items, left, index - 1);
+      }
+      if (index < right) { // more elements on the right side of the pivot
+        await this.quickSort(items, index, right);
+      }
+    }
+    return items;
+  }
+
+  async partition(items: number[], left: number, right: number): Promise<number> {
+    const pivot   = items[Math.floor((right + left) / 2)]; // middle element
+    let i = left; // left pointer
+    let j = right; // right pointer
+    const loop = async () => {
+      while (i <= j) {
+          while (items[i] < pivot) {
+              i++;
+          }
+          while (items[j] > pivot) {
+              j--;
+          }
+          if (i <= j) {
+              await this.swap(items, i, j); // swap two elements
+              i++;
+              j--;
+          }
+      }
+    };
+
+    return loop().then(res => i);
+  }
+  
+  getMergedArray(items: number[]){
+    this.mergeSort(items).then(res => this.valueArray = res)
+  }
+
+  async mergeSort(items: number[]): Promise< number[] > {
+    if (items.length <= 1) {
+      return items;
+    }
+    const mid = Math.floor(items.length / 2);
+    const left = await this.mergeSort(items.slice(0, mid));
+    const right = await this.mergeSort(items.slice(mid));
+    return this.merge(left, right);
+  }
+
+  async merge(slice1: number[], slice2: number[]): Promise<number[]> {
+    const sorted: number[] = [];
+
+    while (slice1.length && slice2.length) {
+      await this.wait(0).then(res => {
+        this.swaps += 1;
+        if (slice1[0] < slice2[0]) {
+          sorted.push(slice1.shift() as number);
+        } else {
+          sorted.push(slice2.shift() as number);
+        }        
+      })
 
     }
-
+    return sorted.concat(slice1.slice().concat(slice2.slice()));
   }
+  // reusable functions
+
+  async swap(items: number[], leftIndex: number, rightIndex: number): Promise < void > {
+    const temp = items[leftIndex];
+    return this.wait(this.animationSpeed).then(res => {
+      items[leftIndex] = items[rightIndex];
+      items[rightIndex] = temp;
+      this.activeColumns[0] = leftIndex;
+      this.activeColumns[1] = rightIndex;
+      this.swaps += 1;
+    });
+  };
+
+  wait(ms: number): Promise < any > {
+    return new Promise(res => setTimeout(res, ms));
+  };
+
+
 }

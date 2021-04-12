@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
 import { WelcomeComponent } from './welcome/welcome.component'
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -15,7 +16,6 @@ import { WelcomeComponent } from './welcome/welcome.component'
   imports: [
     BrowserModule,
     AppRoutingModule,
-
   ],
   providers: [],
   bootstrap: [AppComponent]
