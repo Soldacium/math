@@ -1,0 +1,9 @@
+<main>
+    <button (click)="reset()">Calc hanoi</button>
+    <button (click)="start()">Calc hanoi</button>
+    <div class="slidecontainer">
+        Function slowdown
+        <input type="range" min="0" max="700" value="50" class="slider" id="myRange" [(ngModel)]="animationSpeed">
+    </div>
+    <canvas id="canvas"></canvas>
+</main>

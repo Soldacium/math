@@ -7,6 +7,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { routes } from './algorithms-routes';
 import { SortingComponent } from './sorting/sorting.component';
 import { FormsModule } from '@angular/forms';
+import { McComponent } from './mc/mc.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { FormsModule } from '@angular/forms';
     AlgorithmsComponent,
     HanoiComponent,
     WelcomeComponent,
-    SortingComponent
+    SortingComponent,
+    McComponent
   ],
   imports: [
     CommonModule,

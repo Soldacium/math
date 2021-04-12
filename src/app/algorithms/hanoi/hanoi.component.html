@@ -1,7 +1,35 @@
 <main>
-    <button (click)="hanoiAlgorithm()">Calc hanoi</button>
+    <button (click)="startHanoi()">Calc hanoi</button>
     <div class="slidecontainer">
         Function slowdown
-        <input type="range" min="0" max="500" value="50" class="slider" id="myRange" [(ngModel)]="animationSpeed">
+        <input type="range" min="0" max="700" value="50" class="slider" id="myRange" [(ngModel)]="animationSpeed">
     </div>
+    <div class="slidecontainer">
+        Array size
+        <input type="range" min="3" max="16" value="6" step="1" class="slider" id="myRange" [(ngModel)]="numberOfCircles" (input)="initializeTowers()">
+    </div>
+    <div>
+        {{moves}}
+    </div>
+    <div class="towers">
+        <div class="tower">
+            <span *ngFor="let value of towerA" 
+            [style.width] = "value * (32 - numberOfCircles) + 40 + 'px'" 
+            [style.height] = "100/numberOfCircles + '%'"
+            [style.background-color]="'rgb(0, 255,'+ (128 + value * 8) +')'"></span>
+        </div>
+        <div class="tower">
+            <span *ngFor="let value of towerB" 
+            [style.width] = "value * (32 - numberOfCircles) + 40 + 'px'" 
+            [style.height] = "100/numberOfCircles + '%'"
+            [style.background-color]="'rgb(0, 255,'+ (128 + value * 8) +')'"></span>
+        </div>
+        <div class="tower">
+            <span *ngFor="let value of towerC" 
+            [style.width] = "value * (32 - numberOfCircles) + 40 + 'px'" 
+            [style.height] = "100/numberOfCircles + '%'"
+            [style.background-color]="'rgb(0, 255,'+ (128 + value * 8) +')'"></span>
+        </div>
+    </div>
+    <p>Note: if you go for more than 10 circles, the animation can go on for more than a few minutes</p>
 </main>

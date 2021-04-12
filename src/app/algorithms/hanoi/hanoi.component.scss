@@ -6,3 +6,41 @@ main{
     justify-content: center;
     flex-direction: column;
 }
+
+.towers{
+    display: flex;
+    width: 60%;
+    height: 40vh;
+    position: relative;
+
+    .tower{
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+        position: relative;
+
+        span{
+            background-color: rgb(0, 255, 128);
+            margin: 1.5px;
+            border-radius: 5px;
+            height: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.377);
+            animation: 0.3s appear;   
+        }
+    }
+}
+
+@keyframes appear{
+    0%{
+        opacity: 0;
+    }100%{
+        opacity: 1;
+    }
+}
