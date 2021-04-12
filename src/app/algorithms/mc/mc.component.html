@@ -2,8 +2,13 @@
     <button (click)="reset()">Calc hanoi</button>
     <button (click)="start()">Calc hanoi</button>
     <div class="slidecontainer">
-        Function slowdown
-        <input type="range" min="0" max="700" value="50" class="slider" id="myRange" [(ngModel)]="animationSpeed">
+        Fill-up delay
+        <input type="range" min="1" max="10" value="5" class="slider" id="myRange" [(ngModel)]="fillSpeed">
     </div>
+    <div class="slidecontainer">
+        Animation speed
+        <input type="range" min="0" max="20" value="50" class="slider" id="myRange" [(ngModel)]="animationSpeed">
+    </div>
+    <div>{{4*inside/total}}</div>
     <canvas id="canvas"></canvas>
 </main>
