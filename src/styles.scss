@@ -15,10 +15,6 @@ body{
 
 }
 
-input,textarea{
-    font-family: 'Roboto', sans-serif;
-}
-
 html{
     --smallText: calc(0.5rem + 0.1vw);
     --normalText: calc(0.9rem + 0.1vw);
@@ -26,15 +22,25 @@ html{
     --biggestText: calc(1.5rem + 0.1vw);
 
     --colorPrimary: #272727;
-    --colorSecondary: #636363;
+    --colorSecondary: #2e2e2e;
     --colorText: #F3F3F3;
     --colorAccent1: #FF0090;
     --colorAccent2: #00FFEE;
     --colorAccent3: rgb(0, 255, 128);
 }
 
+input,textarea{
+    font-family: 'Roboto', sans-serif;
+}
+
+button:focus, input:focus, textarea:focus{
+    outline: none;
+}
+
+
+
 *{
     box-sizing: border-box;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html{ height: 100%; }
+

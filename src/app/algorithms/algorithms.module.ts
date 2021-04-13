@@ -8,6 +8,7 @@ import { routes } from './algorithms-routes';
 import { SortingComponent } from './sorting/sorting.component';
 import { FormsModule } from '@angular/forms';
 import { McComponent } from './mc/mc.component';
+import { SharedModule } from '@shared/shared.module';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { McComponent } from './mc/mc.component';
   imports: [
     CommonModule,
     FormsModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    SharedModule
   ]
 })
 export class AlgorithmsModule { }

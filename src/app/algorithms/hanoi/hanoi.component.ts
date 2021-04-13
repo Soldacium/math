@@ -27,7 +27,6 @@ export class HanoiComponent implements OnInit {
     this.towerA = new Array(this.numberOfCircles).fill(0).map((x, i) => i);
     this.towerB = [];
     this.towerC = [];
-
   }
 
   startHanoi(){
@@ -39,11 +38,9 @@ export class HanoiComponent implements OnInit {
   async hanoi(n: number, A: number[], B: number[], C: number[]){
     if (n > 0 && !this.stopAnimation){
       await this.wait(this.animationSpeed).then(res => this.hanoi(n - 1, A, C, B));
-      // console.log(`moving ${A} -> ${C}`);
       C.unshift(A.shift() || 0);
       this.moves += 1;
       await this.wait(this.animationSpeed).then(res => this.hanoi(n - 1, B, A, C));
-      
     }
   }
 

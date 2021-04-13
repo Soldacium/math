@@ -1,0 +1,15 @@
+<div class="slidecontainer">
+    <div class="text">
+        <ng-content></ng-content>
+    </div>
+    <input 
+    [(ngModel)]="inputModel" 
+    (ngModelChange)="inputModelChange.emit(inputModel)"
+    type="range" 
+    [min]="min" 
+    [max]="max" 
+    [value]="value" 
+    [step]="step"
+    class="slider" 
+    id="myRange">
+  </div>

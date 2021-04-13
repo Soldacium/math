@@ -1,0 +1,9 @@
+<main [ngClass]='hide ? "inactive" : "active"'>
+    <button (click)='hide = !hide'>
+        <img src="assets/icons/options.svg" alt="">
+    </button>
+    <div class="content">
+       <ng-content></ng-content> 
+    </div>
+    
+</main>

@@ -10,6 +10,9 @@ export class McComponent implements OnInit {
   fillSpeed = 5;
   animationSpeed = 10;
   circlesAtOnce = 1;
+  circleRadius = 4;
+  stopAnimation = false;
+
   mouse = {
     x: 0,
     y: 0
@@ -27,7 +30,6 @@ export class McComponent implements OnInit {
   inside = 0;
   outside = 0;
   total = 0;
-
 
   constructor() { }
 
@@ -47,17 +49,56 @@ export class McComponent implements OnInit {
       this.mouse.x = event.x;
       this.mouse.y = event.y;
     });
+
+    this.canvas.addEventListener('mouseup', (event) => {
+      const x = event.x - this.canvas.offsetLeft;
+      const y = event.y - this.canvas.offsetTop;
+      if (Math.pow(x - (this.canvasSize / 2), 2) + Math.pow(y - (this.canvasSize / 2), 2) < Math.pow(this.canvasSize / 2, 2)){
+        this.inside += 1;
+      }else{
+        this.outside += 1;
+      }
+      this.total += 1;
+      this.addDisc(x, y, 0, this.circleRadius, this.ctx);
+    });
   }
 
-  start(){
-
+  start(): void{
+    this.stopAnimation = false;
   }
 
-  reset(){
-
+  stop(): void{
+    this.stopAnimation = true;
   }
 
-  drawCircle(ctx: CanvasRenderingContext2D, x: number, y: number, radius: number){
+  reset(): void {
+    this.stopAnimation = true;
+    this.inside = 0;
+    this.outside = 0;
+    this.total = 0;
+    this.ctx.clearRect(0, 0, this.canvasSize, this.canvasSize);
+  }
+
+  animate(): void {
+    requestAnimationFrame(() => {this.animate(); });
+    this.timer++;
+    if (this.timer % this.fillSpeed === 0 && !this.stopAnimation){
+      for (let i = 0; i < this.circlesAtOnce; i++){
+        const x = Math.floor(Math.random() * this.canvasSize);
+        const y = Math.floor(Math.random() * this.canvasSize);
+        if (Math.pow(x - (this.canvasSize / 2), 2) + Math.pow(y - (this.canvasSize / 2), 2) < Math.pow(this.canvasSize / 2, 2)){
+          this.inside += 1;
+        }else{
+          this.outside += 1;
+        }
+        this.total += 1;
+        this.addDisc(x, y, 0, this.circleRadius, this.ctx);
+      }
+    }
+    this.drawCircle(this.ctx, this.canvasSize / 2, this.canvasSize / 2, this.canvasSize / 2);
+  }
+
+  drawCircle(ctx: CanvasRenderingContext2D, x: number, y: number, radius: number): void{
     ctx.beginPath();
     ctx.arc(x, y, radius, 0, 2 * Math.PI);
     ctx.strokeStyle = '#ffffff';
@@ -65,35 +106,14 @@ export class McComponent implements OnInit {
     ctx.closePath();
   }
 
-  animate(): void {
-    requestAnimationFrame(() => {this.animate(); });
-    this.timer++;
-    if(this.timer % this.fillSpeed === 0){
-      for(let i = 0; i < this.circlesAtOnce; i++){
-        const x = Math.floor(Math.random() * this.canvasSize);
-        const y = Math.floor(Math.random() * this.canvasSize);
-        if(Math.pow(x - (this.canvasSize / 2),2) + Math.pow(y - (this.canvasSize / 2),2) < Math.pow(this.canvasSize/2, 2)){
-          this.inside += 1;
-        }else{
-          this.outside += 1;
-        }
-        this.total += 1;
-        this.addCircle(x,y,0,4,this.ctx);        
-      }
-
-    }
-    this.drawCircle(this.ctx, this.canvasSize / 2, this.canvasSize / 2, this.canvasSize / 2);
-  }
-
-  async addCircle(x: number, y: number, radius: number, maxRadius: number, ctx: CanvasRenderingContext2D){
-    if(radius < maxRadius){
-      await this.wait(this.animationSpeed).then(res => this.drawSphere(x,y,radius,ctx));
-      this.addCircle(x,y,radius + 0.2,maxRadius,ctx);
-      console.log('hey')
+  async addDisc(x: number, y: number, radius: number, maxRadius: number, ctx: CanvasRenderingContext2D): Promise<void>{
+    if (radius < maxRadius){
+      await this.wait(this.animationSpeed).then(res => this.drawDisc(x, y, radius, ctx));
+      this.addDisc(x, y, radius + 0.2, maxRadius, ctx);
     }
   }
 
-  drawSphere(x: number, y: number, radius: number, ctx: CanvasRenderingContext2D){
+  drawDisc(x: number, y: number, radius: number, ctx: CanvasRenderingContext2D): void{
     ctx.beginPath();
     ctx.arc(x, y, radius, 0, Math.PI * 2, false);
     ctx.closePath();
@@ -103,7 +123,7 @@ export class McComponent implements OnInit {
 
   wait(ms: number): Promise < any > {
     return new Promise(res => setTimeout(res, ms));
-  };
+  }
 
 }
 /*

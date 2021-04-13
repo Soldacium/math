@@ -1,6 +1,8 @@
 <main>
-    <button (click)="reset()">Calc hanoi</button>
-    <button (click)="start()">Calc hanoi</button>
+    <button (click)="stop()" *ngIf="!stopAnimation">Stop</button>
+    <button (click)="start()" *ngIf="stopAnimation">Start</button>
+    <button (click)="reset()" *ngIf="total > 0">Reset</button>
+    
     <div class="slidecontainer">
         Fill-up delay
         <input type="range" min="1" max="10" value="5" class="slider" id="myRange" [(ngModel)]="fillSpeed">
