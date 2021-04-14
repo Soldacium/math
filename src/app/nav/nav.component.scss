@@ -47,6 +47,7 @@ nav{
             margin: 0.2rem 0;
             white-space: nowrap;
             opacity: 0.3;
+            transition: 0.3s;
 
             &.active{
                 opacity: 1;
@@ -58,7 +59,6 @@ nav{
             font-size: 1rem;
             color: var(--colorText);
             margin: 0.5rem 0;
-            opacity: 0.3;
             transition: 0.3s;
             display: flex;
             align-items: center;
@@ -68,6 +68,9 @@ nav{
 
             &.active{
                 opacity: 1;
+                img{
+                    opacity: 1;
+                }
             }
 
             span{
@@ -78,6 +81,7 @@ nav{
                 height: 1rem;
                 filter: invert(100%);
                 transition: 0.3s ease;
+                opacity: 0.3;
 
                 &:hover{
                     cursor: pointer;

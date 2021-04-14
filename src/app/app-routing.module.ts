@@ -12,6 +12,12 @@ const routes: Routes = [
     loadChildren: () => import('@algorithms/algorithms.module').then(m =>
       m.AlgorithmsModule
     )
+  },
+  {
+    path: 'combinatorics',
+    loadChildren: () => import('@combinatorics/combinatorics.module').then(m =>
+      m.CombinatoricsModule
+    )
   }
 ];
 

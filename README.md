@@ -12,6 +12,7 @@ Project done mostly in Angular/Typescript, some features should be double-checke
 - Combinatorics
     - Pathfinding
     - Knight's tour
+    - Self-avoiding walk
 - Dynamical systems
     - Lorenz attractor
     - Ablion sandpile
@@ -22,6 +23,8 @@ Project done mostly in Angular/Typescript, some features should be double-checke
 - Mathematical Analysis
     - Differencial equations
     - Exhaution method
+- Geometry
+    - Fractals
 
 ## Project structure
 

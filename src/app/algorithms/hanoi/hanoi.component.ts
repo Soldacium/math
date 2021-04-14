@@ -24,7 +24,6 @@ export class HanoiComponent implements OnInit {
     this.addScrollLogic();
   }
 
-  
   addScrollLogic(): void{
     this.buttonsEl = document.getElementById('buttons') as HTMLDivElement;
     this.hanoiEl = document.getElementById('hanoi') as HTMLDivElement;
