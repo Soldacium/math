@@ -34,13 +34,14 @@
     -webkit-transition: .2s;
     transition: opacity .2s;
     border-radius: 0.5rem;
+    cursor: pointer;
 
     &:hover{
         opacity: 1; 
     }
 
     &::-webkit-slider-runnable-track {
-        background: #ddd;
+        background: rgb(90, 90, 90);
     }
     
     /*
@@ -50,7 +51,7 @@
         -webkit-appearance: none;
         height: 40px;
         width: 2px;
-        background: var(--colorAccent1);
+        background: var(--colorAccent2);
         box-shadow: -100vw 0 0 100vw var(--colorAccent3);
     }
     

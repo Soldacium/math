@@ -14,11 +14,23 @@ export class SortingComponent implements OnInit {
   activeColumns = [-1, -1];
   dummyArray: number[] = new Array(this.arraySize).fill(0);
   valueArray: number[] = new Array(this.arraySize).fill(0);
+  arrayHTML!: HTMLDivElement;
 
   constructor() { }
 
   ngOnInit(): void {
     this.valueArray = this.valueArray.map(x => Math.floor(Math.random() * 100));
+    this.addScrollLogic();
+  }
+
+  addScrollLogic(){
+    this.arrayHTML = document.getElementById('array') as HTMLDivElement;
+    window.addEventListener('scroll', e => {
+      const y = window.scrollY;
+      const percent = y/window.innerHeight < 0.5 ? y/window.innerHeight  : 0.5;
+      this.arrayHTML.style.transform = `scaleY(-1) scale(${1 - percent})`
+      this.arrayHTML.style.left = `${20 - 40 * percent}%`
+    })
   }
 
   reinitializeArrays(): void{

@@ -2,17 +2,21 @@ main{
     width: 100%;
     overflow-x: hidden;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: center;
     flex-direction: column;
     
     .sortingColumns{
         height: 60vh;
-        width: 60%;
-        position: relative;
+        width: 60vw;
+        top: 20%;
+        left: 20%;
+        position: fixed;
         display: flex;
         flex-wrap: nowrap;
         transform: scaleY(-1);
+        backface-visibility: hidden;
+        z-index: -1;
 
         >span{
             display: flex;
@@ -38,6 +42,12 @@ main{
         }
     }
 
+    .buttons-wrap{
+        position: absolute;
+        top: 10%;
+        right: 10%;
+    }
+
     .options-wrap{
         position: absolute;
         left: 10%;
@@ -49,6 +59,13 @@ main{
             }
         }
         
+    }
+
+    app-description{
+        width: 40vw;
+        top: 100%;
+        margin-top: 100vh;
+        position: relative;
     }
 
 }

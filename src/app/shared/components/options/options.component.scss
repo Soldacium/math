@@ -6,7 +6,8 @@ main{
     flex-direction: column;
     padding: 1rem;
     border-radius: 1rem;
-    background-color: var(--colorSecondary);
+    background-color: var(--colorPrimary);
+    border: 2px solid var(--colorAccent3);
     // box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.281);
     z-index: 100;
     transition: 0.3s;

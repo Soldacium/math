@@ -1,8 +1,12 @@
 <main>
-    <button (click)="resetArray()">Reset</button>
-    <button (click)="stopAnimation = false;bubbleSort()">Bubble sort</button>
-    <button (click)="stopAnimation = false;quickSort(valueArray, 0, valueArray.length - 1);">Quick sort</button>
-    <button (click)="stopAnimation = false;getMergedArray(valueArray)">Merge sort</button>
+    <div class="buttons-wrap">
+        <button appButtonStroked (click)="resetArray()">Reset</button>
+        <button appButtonStroked (click)="stopAnimation = false;bubbleSort()">Bubble sort</button>
+        <button appButtonStroked (click)="stopAnimation = false;quickSort(valueArray, 0, valueArray.length - 1);">Quick sort</button>
+        <button appButtonStroked (click)="stopAnimation = false;getMergedArray(valueArray)">Merge sort</button>        
+        <div>{{swaps}}</div>
+    </div>
+
     <div class="options-wrap">
         <app-options>   
             <app-input-range [min]="0" [max]="500" [(inputModel)]="animationSpeed">
@@ -16,9 +20,7 @@
             </app-input-range>  
         </app-options>
     </div>
-
-    <div>{{swaps}}</div>
-    <div class="sortingColumns" >
+    <div class="sortingColumns" id="array">
         <span 
         class="column" 
         *ngFor='let value of dummyArray; index as i' 
@@ -29,5 +31,43 @@
             <span [ngClass]='activeColumns.includes(i) ? "active": "normal"'></span>
         </span>
     </div>
+
+    <app-description>
+        <app-content>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ad neque at ex repellat voluptates debitis fugiat tempora modi accusantium eum, odio sunt veritatis beatae velit tenetur consequuntur</p>
+             saepe optio maiores a molestias. Dicta voluptate a corporis possimus odit porro fuga, quisquam nihil reprehenderit velit molestias in suscipit sequi nisi recusandae quidem sint unde vitae consequuntur deserunt esse earum adipisci itaque. Consectetur autem blanditiis, maiores itaque, quaerat necessitatibus tempore debitis odit ratione omnis alias cum illum quos asperiores perferendis natus nobis, earum eveniet aliquam. Repellat, dolor accusantium beatae quam, in, et itaque fuga laudantium veniam labore obcaecati a asperiores numquam facilis aliquam quae libero voluptatibus facere eaque aliquid reiciendis sed aspernatur velit vel. Vel, blanditiis molestiae modi voluptatibus inventore fugiat provident incidunt, perferendis nulla adipisci placeat culpa deleniti voluptas exercitationem, nam optio! Amet reprehenderit iste, natus eaque dolore incidunt, facilis aspernatur ex beatae nobis laborum rem, qui quo! Repudiandae, qui odio! Assumenda non quam illum nobis quae laboriosam repellat earum animi. Similique, alias assumenda. Quam, deserunt voluptates, rerum dolorum nesciunt blanditiis ab porro doloribus laboriosam sapiente soluta tenetur odit maxime reiciendis, fugiat expedita similique at! Atque tempore exercitationem animi provident quos, quod quia aspernatur, labore, magni molestias saepe ipsum sequi quam.
+        </app-content>
+        <app-code>
+            <pre>
+    export class VideoService &#123;
+
+    constructor(
+        private youtubeService: YoutubeService,
+        private vimeoService: VimeoService,
+        private store: Store&lt;State&lt;) &#123;
+        this.setupStoreSubscription();
+        &#125;
+    
+    lastPage = 0;
+    lastItemsPerPage = 0;
+    
+    savedVideos: Video[] = [];
+    videosMeetingSearchCriteria: Video[] = [];
+    searchedVideos: Video[] = [];
+    searchedVideosChange = new EventEmitter&lt;Video[]&lt;();
+    
+    errorEmitter = new EventEmitter&lt;string&lt;();
+    
+    searchOptions: SearchOptions = &#123;
+        videosAllowed: 'all',
+        sort: 'descending',
+        displayType: 'blocks'
+    
+        &#125;;
+    &#125;                   
+            </pre>
+        
+        </app-code>
+    </app-description>
     
 </main>

@@ -1,0 +1,13 @@
+main{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    padding-bottom: 2rem;
+
+    ::ng-deep{
+        font-size: 1rem;
+        overflow-wrap: break-word;
+        word-break: break-all;
+    }
+}

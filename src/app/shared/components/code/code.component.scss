@@ -1,0 +1,34 @@
+main{
+    width: 100%;
+    padding: 1rem;
+    background-color: var(--colorSecondary);
+    position: relative;
+    border-radius: 1rem;
+
+    code{
+        overflow: auto;
+    }
+    ::ng-deep{
+        font-size: 1rem;
+
+        pre{
+            overflow: auto;
+        }
+    }
+
+    .lines{
+        position: absolute;
+        left: 1rem;
+        top: 1.8rem;
+        display: flex;
+        flex-direction: column;
+
+        .line{
+            font-size: 1rem;
+            font-family: monospace;
+            text-align: right;
+            color: rgb(102, 102, 102);
+        }
+    }
+}
+
