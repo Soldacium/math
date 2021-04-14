@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sorting.component.scss']
 })
 export class SortingComponent implements OnInit {
+
   arraySize = 100;
   animationSpeed = 50;
   transitionSpeed = 0.3;
@@ -14,7 +15,9 @@ export class SortingComponent implements OnInit {
   activeColumns = [-1, -1];
   dummyArray: number[] = new Array(this.arraySize).fill(0);
   valueArray: number[] = new Array(this.arraySize).fill(0);
-  arrayHTML!: HTMLDivElement;
+  arrayEl!: HTMLDivElement;
+  optionsEl!: HTMLDivElement;
+  buttonsEl!: HTMLDivElement;
 
   constructor() { }
 
@@ -23,14 +26,18 @@ export class SortingComponent implements OnInit {
     this.addScrollLogic();
   }
 
-  addScrollLogic(){
-    this.arrayHTML = document.getElementById('array') as HTMLDivElement;
+  addScrollLogic(): void{
+    this.buttonsEl = document.getElementById('buttons') as HTMLDivElement;
+    this.optionsEl = document.getElementById('options') as HTMLDivElement;
+    this.arrayEl = document.getElementById('array') as HTMLDivElement;
     window.addEventListener('scroll', e => {
       const y = window.scrollY;
-      const percent = y/window.innerHeight < 0.5 ? y/window.innerHeight  : 0.5;
-      this.arrayHTML.style.transform = `scaleY(-1) scale(${1 - percent})`
-      this.arrayHTML.style.left = `${20 - 40 * percent}%`
-    })
+      const percent = y / window.innerHeight < 0.5 ? y / window.innerHeight  : 0.5;
+      this.arrayEl.style.transform = `scaleY(-1) scale(${1 - percent})`;
+      this.arrayEl.style.left = `${20 - 40 * percent}%`;
+      this.buttonsEl.style.left = `${50 - 40 * percent}%`;
+      this.buttonsEl.style.top = `${10 + 20 * percent}%`;
+    });
   }
 
   reinitializeArrays(): void{
@@ -52,7 +59,7 @@ export class SortingComponent implements OnInit {
 
   randomizeSingleValue(index: number): void {
     if (index >= 0) {
-      this.wait(25).then(res => {
+      this.wait(26 - this.arraySize / 7).then(res => {
         this.valueArray[index] = Math.floor(Math.random() * 100);
         this.activeColumns[0] = index;
         return this.randomizeSingleValue(index - 1);
@@ -65,7 +72,7 @@ export class SortingComponent implements OnInit {
   // "needs" recursion for animations
   async bubbleSort(): Promise<void>{
     for (let i = this.arraySize; i > 0; i--){
-      if(!this.stopAnimation){
+      if (!this.stopAnimation){
         await this.bubble(i);
       }
     }
@@ -115,9 +122,9 @@ export class SortingComponent implements OnInit {
 
     return loop().then(res => i);
   }
-  
-  getMergedArray(items: number[]){
-    this.mergeSort(items).then(res => this.valueArray = res)
+
+  getMergedArray(items: number[]): void{
+    this.mergeSort(items).then(res => this.valueArray = res);
   }
 
   async mergeSort(items: number[]): Promise< number[] > {
@@ -140,13 +147,12 @@ export class SortingComponent implements OnInit {
           sorted.push(slice1.shift() as number);
         } else {
           sorted.push(slice2.shift() as number);
-        }        
-      })
+        }
+      });
 
     }
     return sorted.concat(slice1.slice().concat(slice2.slice()));
   }
-  // reusable functions
 
   async swap(items: number[], leftIndex: number, rightIndex: number): Promise < void > {
     const temp = items[leftIndex];
@@ -157,11 +163,11 @@ export class SortingComponent implements OnInit {
       this.activeColumns[1] = rightIndex;
       this.swaps += 1;
     });
-  };
+  }
 
   wait(ms: number): Promise < any > {
     return new Promise(res => setTimeout(res, ms));
-  };
+  }
 
 
 }

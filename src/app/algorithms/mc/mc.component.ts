@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./mc.component.scss']
 })
 export class McComponent implements OnInit {
-
+  timer = 0;
   fillSpeed = 5;
   animationSpeed = 10;
   circlesAtOnce = 1;
@@ -17,30 +17,30 @@ export class McComponent implements OnInit {
     x: 0,
     y: 0
   };
-
-  timer = 0;
-
   canvasSize = 0;
   canvas!: HTMLCanvasElement;
   ctx!: CanvasRenderingContext2D;
   backgroundColor = '#272727';
   circleColor = '#00ff80';
-
   circleArray = [];
   inside = 0;
   outside = 0;
   total = 0;
 
+  buttonsEl!: HTMLDivElement;
+  piEl!: HTMLDivElement;
+
   constructor() { }
 
   ngOnInit(): void {
     this.initCanvas();
+    this.addScrollLogic();
     this.animate();
   }
 
   initCanvas(): void {
     this.canvas = document.getElementById('canvas') as HTMLCanvasElement;
-    this.canvasSize = window.innerHeight * 0.6;
+    this.canvasSize = window.innerHeight * 0.7;
     this.canvas.width = this.canvasSize;
     this.canvas.height = this.canvasSize;
     this.ctx = this.canvas.getContext('2d') as CanvasRenderingContext2D;
@@ -60,6 +60,21 @@ export class McComponent implements OnInit {
       }
       this.total += 1;
       this.addDisc(x, y, 0, this.circleRadius, this.ctx);
+    });
+  }
+
+  addScrollLogic(): void{
+    this.buttonsEl = document.getElementById('buttons') as HTMLDivElement;
+    this.piEl = document.getElementById('PI') as HTMLDivElement;
+    window.addEventListener('scroll', e => {
+      const y = window.scrollY;
+      const percent = y / window.innerHeight < 0.5 ? y / window.innerHeight  : 0.5;
+      this.canvas.style.transform = `scale(${1 - percent * 0.7}) translate(-50%,-50%)`;
+      this.canvas.style.left = `${50 - 50 * percent}%`;
+      this.buttonsEl.style.left = `${50 - 37 * percent}%`;
+      this.buttonsEl.style.top = `${10 + 40 * percent}%`;
+      this.piEl.style.left = `${50 - 37 * percent}%`;
+      this.piEl.style.top = `${88 + 5 * percent}%`;
     });
   }
 
@@ -95,7 +110,7 @@ export class McComponent implements OnInit {
         this.addDisc(x, y, 0, this.circleRadius, this.ctx);
       }
     }
-    this.drawCircle(this.ctx, this.canvasSize / 2, this.canvasSize / 2, this.canvasSize / 2);
+    this.drawCircle(this.ctx, this.canvasSize / 2, this.canvasSize / 2, this.canvasSize / 2 - 1);
   }
 
   drawCircle(ctx: CanvasRenderingContext2D, x: number, y: number, radius: number): void{

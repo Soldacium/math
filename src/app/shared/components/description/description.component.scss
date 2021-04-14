@@ -13,8 +13,10 @@ main{
     border: 3px solid var(--colorSecondary);
     padding: 2rem;
 
-    ::ng-deep header {
-        font-weight: bold;
+    ::ng-deep{
+        img{
+            width: 100%;
+        }
     }
 
 }

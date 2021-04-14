@@ -1,9 +1,9 @@
 import { Directive, ElementRef, HostListener, Input } from '@angular/core';
 
 @Directive({
-  selector: '[appButtonStroked]'
+  selector: '[appButtonFlat]'
 })
-export class ButtonStrokedDirective {
+export class ButtonFlatDirective {
 
   @Input() defaultColor: string = '#00000000';
 
@@ -27,10 +27,7 @@ export class ButtonStrokedDirective {
     buttonStyle.transition = '0.2s ease background-color';
     buttonStyle.cursor = 'pointer';
     buttonStyle['border-radius'] = '0.5rem';
-    buttonStyle.border = '2px solid var(--colorAccent3)';
+    // buttonStyle.border = '2px solid var(--colorAccent3)';
     buttonStyle.color = 'white';
   }
-
-
-
 }

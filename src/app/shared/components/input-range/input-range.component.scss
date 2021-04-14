@@ -1,7 +1,7 @@
 .slidecontainer {
     width: 100%;
     position: relative;
-    padding: 0.5rem 0;
+    padding: 0.4rem 0;
     &:active{
         .text{
             color: var(--colorAccent3);
@@ -26,7 +26,7 @@
     -webkit-appearance: none;
     appearance: none;
     width: 100%;
-    height: 1.6rem;
+    height: 1.3rem;
     background: #d3d3d3;
     outline: none;
     opacity: 1;
@@ -44,9 +44,6 @@
         background: rgb(90, 90, 90);
     }
     
-    /*
-     * 1. Set to 0 width and remove border for a slider without a thumb
-     */
     &::-webkit-slider-thumb {
         -webkit-appearance: none;
         height: 40px;

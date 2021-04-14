@@ -14,11 +14,30 @@ export class HanoiComponent implements OnInit {
   towerB: number[] = [];
   towerC: number[] = [];
   stopAnimation = false;
+  buttonsEl!: HTMLDivElement;
+  hanoiEl!: HTMLDivElement;
 
   constructor() { }
 
   ngOnInit(): void {
     this.initializeTowers();
+    this.addScrollLogic();
+  }
+
+  
+  addScrollLogic(): void{
+    this.buttonsEl = document.getElementById('buttons') as HTMLDivElement;
+    this.hanoiEl = document.getElementById('hanoi') as HTMLDivElement;
+    window.addEventListener('scroll', e => {
+      const y = window.scrollY;
+      const percent = y / window.innerHeight < 0.5 ? y / window.innerHeight  : 0.5;
+      this.hanoiEl.style.transform = `scale(${1 - percent * 0.7})`;
+      this.hanoiEl.style.left = `${20 - 40 * percent}%`;
+      this.buttonsEl.style.left = `${50 - 37 * percent}%`;
+      this.buttonsEl.style.top = `${10 + 40 * percent}%`;
+      //this.piEl.style.left = `${50 - 37 * percent}%`;
+      //this.piEl.style.top = `${88 + 5 * percent}%`;
+    });
   }
 
   initializeTowers(): void{

@@ -25,7 +25,8 @@
         "@services/*": ["app/services/*"],
         "@shared/*": ["app/shared/*"],
         "@appRoot/*": ["app/*"],
-    }
+    },
+    "allowSyntheticDefaultImports": true
   },
   "angularCompilerOptions": {
     "strictInjectionParameters": true,

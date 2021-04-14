@@ -7,6 +7,7 @@ import { DescriptionComponent } from './components/description/description.compo
 import { CodeComponent } from './components/code/code.component';
 import { ContentComponent } from './components/content/content.component';
 import { ButtonStrokedDirective } from './directives/button-stroked.directive';
+import { ButtonFlatDirective } from './directives/button-flat.directive';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { ButtonStrokedDirective } from './directives/button-stroked.directive';
     CodeComponent,
     ContentComponent,
     ButtonStrokedDirective,
+    ButtonFlatDirective,
 
   ],
   imports: [
@@ -28,7 +30,8 @@ import { ButtonStrokedDirective } from './directives/button-stroked.directive';
     DescriptionComponent,
     CodeComponent,
     ContentComponent,
-    ButtonStrokedDirective
+    ButtonStrokedDirective,
+    ButtonFlatDirective
   ]
 })
 export class SharedModule { }

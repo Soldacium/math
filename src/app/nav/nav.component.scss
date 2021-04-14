@@ -33,7 +33,7 @@ nav{
                 max-height: 200px;
             }
 
-            >a{
+            .field-name{
                 img{
                     &:last-of-type{
                         transform: rotate(90deg);
@@ -43,6 +43,17 @@ nav{
         }
 
         a{
+            color: white;
+            margin: 0.2rem 0;
+            white-space: nowrap;
+            opacity: 0.3;
+
+            &.active{
+                opacity: 1;
+            }
+        }
+
+        .field-name{
             text-decoration: none;
             font-size: 1rem;
             color: var(--colorText);
@@ -67,6 +78,10 @@ nav{
                 height: 1rem;
                 filter: invert(100%);
                 transition: 0.3s ease;
+
+                &:hover{
+                    cursor: pointer;
+                }
 
                 &:first-of-type{
                     margin-right: 1rem;

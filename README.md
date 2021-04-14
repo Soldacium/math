@@ -32,7 +32,7 @@ Project is split into modules, one for each branch of math. This is done for two
 Each module is split into components, one for each concept. This keeps it easy to navigate around. Additionaly, every concept, in addition to explaining itself when viewing website, should have README attatched basically repeating what this component does and why.
 
 #### 3. Shared
-Each component will be using reusable parts of the code, shared components, models and guards. Examples of such would be *explanation.component* or *button-normal.component*, used to keep the styling of each module and component as similar as possible.
+Each component will be using reusable parts of the code, shared components, directives, models and guards. Examples of such would be *explanation.component* or *button-normal.component*, used to keep the styling of each module and component as similar as possible. Directives are mostly pure styling, like those used for buttons (*button-flat.directive.ts*).
 
 #### 4. Services
 Some of the components will be needing external help. As such, they will be communicating to our *Python/Flask API* via *HTTP protocols*. "Front-end" server is built using *node.js and express*.

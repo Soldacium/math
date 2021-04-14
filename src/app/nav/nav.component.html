@@ -1,10 +1,10 @@
 <nav>
     <div class="field" [ngClass]="{'active': checkIfActive('algorithms')}">
-        <a [routerLink]='["algorithms"]' (click)='addActiveCategory("algorithms")' routerLinkActive="active"> 
+        <div class="field-name"  routerLinkActive="active"> 
             <img src="assets/icons/algorithms.svg" alt="">
-            <span>Algorithms</span> 
-            <img src="assets/icons/arrow-right.svg" alt="">
-        </a>
+            <a [routerLink]='["algorithms"]' routerLinkActive="active">Algorithms</a> 
+            <img src="assets/icons/arrow-right.svg" (click)='addActiveCategory("algorithms")' alt="">
+        </div>
         <div class="concepts">
             <a [routerLink]='["algorithms/hanoi"]' routerLinkActive="active">Hanoi</a>
             <a [routerLink]='["algorithms/sorting"]' routerLinkActive="active">Sorting</a>
@@ -15,34 +15,32 @@
         </span>
     </div>
     <div class="field" [ngClass]="{'active': checkIfActive('chaos')}">
-        <a [routerLink]='["algorithms"]' (click)='addActiveCategory("chaos")' routerLinkActive="active"> 
+        <div class="field-name"  routerLinkActive="active"> 
             <img src="assets/icons/chaosTheory.svg" alt="">
-            <span>Dynamical systems</span> 
-            <img src="assets/icons/arrow-right.svg" alt="">
-        </a>
+            <a [routerLink]='["algorithms"]' routerLinkActive="active">Dynamical Systems</a> 
+            <img src="assets/icons/arrow-right.svg" (click)='addActiveCategory("chaos")' alt="">
+        </div>
         <div class="concepts">
             <a [routerLink]='["algorithms/hanoi"]' routerLinkActive="active">Lorenz attractor</a>
-            <a [routerLink]='["algorithms/hanoi"]' routerLinkActive="active">Ablion sandpile</a>
-            <a [routerLink]='["algorithms/hanoi"]' routerLinkActive="active">Double pendulum</a>
+            <a [routerLink]='["algorithms/sorting"]' routerLinkActive="active">Ablion sandpile</a>
+            <a [routerLink]='["algorithms/monte-carlo"]' routerLinkActive="active">Double pendulum</a>
         </div>
         <span class="square">
 
         </span>
     </div>
     <div class="field" [ngClass]="{'active': checkIfActive('combinatorics')}">
-        <a [routerLink]='["algorithms"]' (click)='addActiveCategory("combinatorics")' routerLinkActive="active"> 
+        <div class="field-name"  routerLinkActive="active"> 
             <img src="assets/icons/graphTheory.svg" alt="">
-            <span>Combinatorics</span> 
-            <img src="assets/icons/arrow-right.svg" alt="">
-        </a>
+            <a [routerLink]='["algorithms"]' routerLinkActive="active">Dynamical Systems</a> 
+            <img src="assets/icons/arrow-right.svg" (click)='addActiveCategory("combinatorics")' alt="">
+        </div>
         <div class="concepts">
             <a [routerLink]='["algorithms/hanoi"]' routerLinkActive="active">Pathfinding</a>
-            <a [routerLink]='["algorithms/hanoi"]' routerLinkActive="active">Knight's tour</a>
+            <a [routerLink]='["algorithms/sorting"]' routerLinkActive="active">Knight's tour</a>
         </div>
         <span class="square">
 
         </span>
     </div>
-
-
 </nav>

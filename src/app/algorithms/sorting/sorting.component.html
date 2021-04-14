@@ -1,14 +1,7 @@
 <main>
-    <div class="buttons-wrap">
-        <button appButtonStroked (click)="resetArray()">Reset</button>
-        <button appButtonStroked (click)="stopAnimation = false;bubbleSort()">Bubble sort</button>
-        <button appButtonStroked (click)="stopAnimation = false;quickSort(valueArray, 0, valueArray.length - 1);">Quick sort</button>
-        <button appButtonStroked (click)="stopAnimation = false;getMergedArray(valueArray)">Merge sort</button>        
-        <div>{{swaps}}</div>
-    </div>
-
-    <div class="options-wrap">
-        <app-options>   
+    <div class="buttons-wrap" id="buttons">
+        <div class="options-wrap" id="options">
+        <app-options>  
             <app-input-range [min]="0" [max]="500" [(inputModel)]="animationSpeed">
                 Function slowdown
             </app-input-range>      
@@ -19,7 +12,14 @@
                 Array size
             </app-input-range>  
         </app-options>
+        </div>
+        <button appButtonStroked (click)="resetArray()">Reset</button>
+        <button appButtonStroked (click)="stopAnimation = false;bubbleSort()">Bubble sort</button>
+        <button appButtonStroked (click)="stopAnimation = false;quickSort(valueArray, 0, valueArray.length - 1);">Quick sort</button>
+        <button appButtonStroked (click)="stopAnimation = false;getMergedArray(valueArray)">Merge sort</button>        
+        
     </div>
+
     <div class="sortingColumns" id="array">
         <span 
         class="column" 
@@ -30,8 +30,8 @@
         >
             <span [ngClass]='activeColumns.includes(i) ? "active": "normal"'></span>
         </span>
+        <div class="swaps">{{swaps}}</div>
     </div>
-
     <app-description>
         <app-content>
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ad neque at ex repellat voluptates debitis fugiat tempora modi accusantium eum, odio sunt veritatis beatae velit tenetur consequuntur</p>
@@ -69,5 +69,5 @@
         
         </app-code>
     </app-description>
-    
+
 </main>

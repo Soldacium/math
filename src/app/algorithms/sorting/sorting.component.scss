@@ -5,11 +5,30 @@ main{
     align-items: flex-end;
     justify-content: center;
     flex-direction: column;
+
+    .buttons-wrap{
+        position: fixed;
+        display: flex;
+        top: 10%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+
+        button{
+            margin: 0.3rem;
+        }
+    }
+
+    .options-wrap{
+        position: absolute;
+        right: 100%;
+        top: 0;
+         
+    }
     
     .sortingColumns{
         height: 60vh;
         width: 60vw;
-        top: 20%;
+        top: 30%;
         left: 20%;
         position: fixed;
         display: flex;
@@ -40,25 +59,13 @@ main{
                 }
             }
         }
-    }
 
-    .buttons-wrap{
-        position: absolute;
-        top: 10%;
-        right: 10%;
-    }
-
-    .options-wrap{
-        position: absolute;
-        left: 10%;
-        top: 10%;
-
-        app-options{
-            app-input-range{
-                
-            }
+        .swaps{
+            position: absolute;
+            left: 50%;
+            top: -5%;
+            transform: translate(-50%,-50%) scaleY(-1);
         }
-        
     }
 
     app-description{
