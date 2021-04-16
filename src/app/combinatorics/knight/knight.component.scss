@@ -8,6 +8,8 @@ main{
     .buttons-wrap{
         position: fixed;
         display: flex;
+        justify-content: center;
+        align-items: center;
         top: 10%;
         left: 50%;
         transform: translate(-50%,-50%);
@@ -16,17 +18,38 @@ main{
         button{
             margin: 0.3rem;
         }
+
+        >app-input-range{
+            margin: 0.3rem;
+        }
     }
 
     .options-wrap{
         position: absolute;
         right: 100%;
-        top: 0;
+        top: 0.3rem;
     }
 
-    canvas{
+    .canvas{
         position: fixed;
-        top: 10%;
+        top: 15%;
         left: 30%;
+
+        canvas{
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        &#canvas-bg{
+            z-index: -1;
+        }
+    }
+
+    app-description{
+        width: 40vw;
+        top: 100%;
+        margin-top: 100vh;
+        position: relative;
     }
 }

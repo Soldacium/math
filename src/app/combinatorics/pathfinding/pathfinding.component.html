@@ -1,1 +1,33 @@
-<p>pathfinding works!</p>
+<main>
+    <div class="buttons-wrap">
+        <div class="options-wrap" id="options">
+            <app-options>  
+                <app-input-range [min]="0" [max]="500" [(inputModel)]="animationSpeed">
+                    Function slowdown
+                </app-input-range> 
+                <app-input-range [min]="8" [max]="80" [step]="1" [(inputModel)]="graphSize" (input)="reset()">
+                    Graph size
+                </app-input-range>  
+
+            </app-options>
+        </div>
+        <button appButtonStroked (click)="calcDijkstra()">Dijkstra</button>      
+        <button appButtonStroked (click)="calcAStar()">A* find</button>    
+        <button appButtonStroked (click)="reset()">Reset</button>  
+        <button appButtonStroked (click)="stopAnimation = true">Stop Animation</button>   
+    </div>
+
+    <!--
+    <app-input-range [min]="1" [max]="8" [step]="1" [(inputModel)]="movementVector[0]">
+        JumpX
+    </app-input-range>  
+    <app-input-range [min]="1" [max]="8" [step]="1" [(inputModel)]="movementVector[1]">
+        JumpY
+    </app-input-range>         
+    -->
+
+    <div class="canvas-wrap">
+        <canvas id='canvas-bg'></canvas>
+        <canvas id='canvas-path'></canvas>
+    </div>
+</main>

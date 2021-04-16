@@ -13,7 +13,7 @@ import { SharedModule } from '@shared/shared.module';
   declarations: [
     AppComponent,
     NavComponent,
-    WelcomeComponent
+    WelcomeComponent,
   ],
   imports: [
     BrowserModule,

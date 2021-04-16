@@ -1,0 +1,55 @@
+main{
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    justify-items: center;
+
+    .buttons-wrap{
+        position: fixed;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        top: 10%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        z-index: 10;
+
+        button{
+            margin: 0.3rem;
+        }
+
+        >app-input-range{
+            margin: 0.3rem;
+        }
+    }
+
+    .options-wrap{
+        position: absolute;
+        right: 100%;
+        top: 0.3rem;
+    }
+
+    .canvas-wrap{
+        position: fixed;
+        top: 15%;
+        left: 30%;
+
+        canvas{
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        &#canvas-bg{
+            z-index: -1;
+        }
+    }
+
+    app-description{
+        width: 40vw;
+        top: 100%;
+        margin-top: 100vh;
+        position: relative;
+    }
+}

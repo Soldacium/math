@@ -1,0 +1,75 @@
+.input-box {
+    position: relative;
+    padding: 1.2rem 1rem 0.5rem 1rem ;
+    margin-top: 1rem;
+    width: 100%;
+    background-color: rgb(250, 250, 250);
+    border-radius: 0rem;
+    overflow: hidden;
+}
+
+.input-box.dark{
+    filter: invert(90%);
+}
+
+.input-field {
+    font-family: inherit;
+    width: 100%;
+    border: 0;
+    outline: 0;
+    font-size: 1rem;
+    padding: 7px 0;
+    background: transparent;
+    transition: border-color 0.2s;
+}
+.input-field::placeholder {
+    color: transparent;
+}
+.input-field:placeholder-shown ~ .input-label {
+    font-size: 1rem;
+    cursor: text;
+    top: 20px;
+}
+
+.input-label {
+    position: absolute;
+    top: 0.5rem;
+    display: block;
+    transition: 0.2s;
+    font-size: 0.8rem;
+    color: #9b9b9b;
+}
+
+.input-field:focus {
+    font-weight: 500;
+    border-width: 3px;
+    border-image: linear-gradient(to right, #11998e, #38ef7d);
+    border-image-slice: 1;
+}
+.input-field:focus ~ .input-label {
+    position: absolute;
+    top: 0.5rem;
+    display: block;
+    transition: 0.2s;
+    font-size: 0.8rem;
+    color: #11998e;
+    font-weight: 600;
+}
+
+/* reset input */
+.input-field:required, .input-field:invalid {
+    box-shadow: none;
+}
+
+.input-box button{
+    position: absolute;
+    right: 0;
+    top: 0;
+    border: none;
+    width: 3rem;
+    height: 100%;
+    background-color: rgb(195, 251, 255);
+    background-size: 2rem 2rem;
+    background-position: center;
+    background-repeat: no-repeat;
+}

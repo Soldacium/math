@@ -8,6 +8,7 @@ import { CodeComponent } from './components/code/code.component';
 import { ContentComponent } from './components/content/content.component';
 import { ButtonStrokedDirective } from './directives/button-stroked.directive';
 import { ButtonFlatDirective } from './directives/button-flat.directive';
+import { InputSimpleComponent } from './components/input-simple/input-simple.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { ButtonFlatDirective } from './directives/button-flat.directive';
     ContentComponent,
     ButtonStrokedDirective,
     ButtonFlatDirective,
+    InputSimpleComponent,
 
   ],
   imports: [
@@ -27,6 +29,7 @@ import { ButtonFlatDirective } from './directives/button-flat.directive';
   exports: [
     OptionsComponent,
     InputRangeComponent,
+    InputSimpleComponent,
     DescriptionComponent,
     CodeComponent,
     ContentComponent,

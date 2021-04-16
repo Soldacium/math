@@ -33,8 +33,8 @@ export class SortingComponent implements OnInit {
     window.addEventListener('scroll', e => {
       const y = window.scrollY;
       const percent = y / window.innerHeight < 0.5 ? y / window.innerHeight  : 0.5;
-      this.arrayEl.style.transform = `scaleY(-1) scale(${1 - percent})`;
-      this.arrayEl.style.left = `${20 - 40 * percent}%`;
+      this.arrayEl.style.transform = `scaleY(-1) scale(${1 - percent * 0.8})`;
+      this.arrayEl.style.left = `${25 - 40 * percent}%`;
       this.buttonsEl.style.left = `${50 - 40 * percent}%`;
       this.buttonsEl.style.top = `${10 + 20 * percent}%`;
     });

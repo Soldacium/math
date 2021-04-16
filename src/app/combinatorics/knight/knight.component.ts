@@ -7,83 +7,116 @@ import { Component, OnInit } from '@angular/core';
 })
 export class KnightComponent implements OnInit {
 
-  canvas!: HTMLCanvasElement;
-  ctx!: CanvasRenderingContext2D;
   canvasSize!: number;
-  mouse = {
-    x: 0,
-    y: 0
-  };
+  canvasBg!: HTMLCanvasElement;
+  ctxBg!: CanvasRenderingContext2D;
+  canvasPath!: HTMLCanvasElement;
+  ctxPath!: CanvasRenderingContext2D;
+  buttonsEl!: HTMLDivElement;
+  canvasContainerEl!: HTMLDivElement;
+
+  stopAnimation = false;
+  startNode = [
+    0, 0
+  ];
   graph: Node[] = [];
-  graphSize = 8;
+  graphSize = 50;
   animationSpeed = 10;
+  movementVector = [2, 1];
   movementVectors: number[][] = [
     [-2, 1], [-2, -1], [2, 1], [2, -1],
     [-1, 2], [-1, -2], [1, -2], [1, 2]
   ];
   jumpNum = 0;
   // #00ff8030
-  fillColor = '#4a4a4a';
+  fillColor = '#252525';
   lineColor = '#FF0090';
   strokeColor = 'rgb(0, 255, 128)';
-
-  startNode = [
-    0, 0
-  ];
-
-  buttonsEl!: HTMLDivElement;
+  mouse = {
+    x: 0,
+    y: 0
+  };
 
   constructor() { }
 
   ngOnInit(): void {
+    this.addScrollLogic();
     this.initCanvas();
     this.animate();
-    this.makeNodes();
-    this.drawGraph();
-  }
-
-  initCanvas(): void {
-    this.canvas = document.getElementById('canvas') as HTMLCanvasElement;
-    this.canvasSize = window.innerHeight * 0.7;
-    this.canvas.width = this.canvasSize;
-    this.canvas.height = this.canvasSize;
-    this.ctx = this.canvas.getContext('2d') as CanvasRenderingContext2D;
-
-    this.canvas.addEventListener('mousemove', (event) => {
-      this.mouse.x = event.x;
-      this.mouse.y = event.y;
-    });
-
-    window.addEventListener('resize', () => {
-      this.canvasSize = window.innerHeight * 0.7;
-      this.canvas.width = this.canvasSize;
-      this.canvas.height = this.canvasSize;
-      this.drawGraph();
-    });
-  }
-
-  reset(){
+    this.establishMovementVectors();
     this.makeNodes();
     this.drawGraph();
   }
 
   addScrollLogic(): void{
     this.buttonsEl = document.getElementById('buttons') as HTMLDivElement;
+    this.canvasContainerEl = document.getElementById('canvas-container') as HTMLDivElement;
+    console.log(this.canvasContainerEl);
     window.addEventListener('scroll', e => {
       const y = window.scrollY;
       const percent = y / window.innerHeight < 0.5 ? y / window.innerHeight  : 0.5;
-      this.canvas.style.transform = `scaleY(-1) scale(${1 - percent})`;
-      this.canvas.style.left = `${20 - 40 * percent}%`;
+      this.canvasContainerEl.style.transform = `scale(${1 - percent * 0.6})`;
+      this.canvasContainerEl.style.left = `${30 - 25 * percent}%`;
+      this.canvasContainerEl.style.top = `${15 + 20 * percent}%`;
       this.buttonsEl.style.left = `${50 - 40 * percent}%`;
       this.buttonsEl.style.top = `${10 + 20 * percent}%`;
     });
   }
 
+  initCanvas(): void {
+    this.canvasSize = window.innerHeight * 0.7;
+    this.canvasBg = document.getElementById('canvas-bg') as HTMLCanvasElement;
+    this.canvasPath = document.getElementById('canvas-path') as HTMLCanvasElement;
+
+    this.ctxBg = this.canvasBg.getContext('2d') as CanvasRenderingContext2D;
+    this.ctxPath = this.canvasPath.getContext('2d') as CanvasRenderingContext2D;
+
+    this.canvasBg.width = this.canvasSize;
+    this.canvasBg.height = this.canvasSize;
+    this.canvasPath.width = this.canvasSize;
+    this.canvasPath.height = this.canvasSize;
+
+    this.canvasBg.addEventListener('mousemove', (event) => {
+      this.mouse.x = event.x;
+      this.mouse.y = event.y;
+    });
+
+    window.addEventListener('resize', () => {
+      this.canvasSize = window.innerHeight * 0.7;
+      this.canvasBg.width = this.canvasSize;
+      this.canvasBg.height = this.canvasSize;
+      this.canvasPath.width = this.canvasSize;
+      this.canvasPath.height = this.canvasSize;
+      this.drawGraph();
+    });
+  }
+
   animate(): void {
     requestAnimationFrame(() => {this.animate(); });
-    // this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    // this.ctx.fillText('HTML CANVAS TEMPLATE' , this.mouse.x, this.mouse.y);
   }
+
+  reset(): void {
+    this.stopAnimation = true;
+    this.fillColor = '#252525';
+    this.establishMovementVectors();
+    this.makeNodes();
+    this.drawGraph();
+    this.ctxPath.clearRect(0, 0, this.canvasSize, this.canvasSize);
+  }
+
+  establishMovementVectors(): void{
+    this.movementVectors = [];
+    for (let i = 0; i < 2; i++){
+      for (let j = 0; j < 2; j++){
+        for (let k = 0; k < 2; k++){
+          const vector = [this.movementVector[0 + j] * Math.pow(-1, i), this.movementVector[1 - j] * Math.pow(-1, i + j + k)];
+          this.movementVectors.push(vector);
+        }
+      }
+    }
+  }
+
+
   // oblicz dystans tego node od centrum
   // wyznacz połączone nody
   // uzyj wektorów by sprawdzic ktore skoki rycerza są mozliwe
@@ -95,7 +128,7 @@ export class KnightComponent implements OnInit {
     this.graph = [];
     for (let x = 0; x < this.graphSize; x++) {
       for (let y = 0; y < this.graphSize; y++) {
-        const dist = Math.sqrt(Math.pow(this.graphSize/2 - x, 2) + Math.pow(this.graphSize/2 - y, 2));
+        const dist = Math.sqrt(Math.pow(this.graphSize / 2 - x, 2) + Math.pow(this.graphSize / 2 - y, 2));
         const nodeConnections: number[][] = [];
         this.movementVectors.forEach(vector => {
           const connection: number[] = [];
@@ -106,25 +139,35 @@ export class KnightComponent implements OnInit {
             nodeConnections.push(connection);
           }
         });
-        const node: Node = {
-          x,
-          y,
-          distance: dist,
-          nodeConnections,
-          radius: 5,
-          activeConnections: nodeConnections.length,
-          isActive: true
-        };
+        const node: Node = this.newNode(x, y, dist, nodeConnections, 5, nodeConnections.length, true);
         this.graph.push(node);
       }
     }
-    console.log(this.graph);
+  }
+
+  newNode(
+    x: number ,
+    y: number,
+    distance: number,
+    nodeConnections: number[][],
+    radius: number,
+    activeConnections: number,
+    isActive: boolean): Node {
+    return {
+      x,
+      y,
+      distance,
+      nodeConnections,
+      radius,
+      activeConnections,
+      isActive
+    };
   }
 
   drawGraph(): void{
-    const rectWidth = this.canvas.width / this.graphSize;
-    for (let x = 0; x < this.canvas.width; x += rectWidth){
-      for (let y = 0; y < this.canvas.width; y += rectWidth){
+    const rectWidth = this.canvasBg.width / this.graphSize;
+    for (let x = 0; x < this.canvasBg.width; x += rectWidth){
+      for (let y = 0; y < this.canvasBg.width; y += rectWidth){
         this.drawGraphRect(x, y, x + rectWidth, y + rectWidth);
       }
     }
@@ -145,27 +188,24 @@ export class KnightComponent implements OnInit {
   // rysujemy linię między wybranym z listy activeNode a currentNode
 
   async knightTour(){
+    this.stopAnimation = false;
     this.jumpNum = 0;
-    // this.fillColor = '#ffffff'
+    this.fillColor = '#6a6a6a';
     let activeNodes = this.graph.length;
     let currentNode = this.searchFor(this.startNode[0], this.startNode[1]); // obecne miejsce na planszy
 
-    while (activeNodes > 0){
+    while (activeNodes > 0 && !this.stopAnimation){
       const activeNestedNodes: Node[] = [];
       let minimumConnections = 8;
       currentNode.isActive = false;
-
       currentNode.nodeConnections.forEach(toNode => {
         const check_1 = this.searchFor(toNode[0], toNode[1]);
-
-        if (check_1.isActive == true){
+        if (check_1.isActive === true){
           activeNestedNodes.push(check_1);
           check_1.activeConnections = 0;
-
           check_1.nodeConnections.forEach( toToNode => {
             const check_2 = this.searchFor(toToNode[0], toToNode[1]);
-
-            if (check_2.isActive == true){
+            if (check_2.isActive === true){
               check_1.activeConnections += 1;
             }
           });
@@ -175,65 +215,64 @@ export class KnightComponent implements OnInit {
         }
       });
 
-      const lastX = currentNode.x, lastY = currentNode.y;
-
-      const kandydaci: Node[] = [];
+      const lastX = currentNode.x;
+      const lastY = currentNode.y;
+      const possibleNodes: Node[] = [];
       activeNestedNodes.forEach(node => {
         if (node.activeConnections === minimumConnections ){ // && node.distance == maximumDistance
-          kandydaci.push(node);
-      }
-      // console.log(activeNestedNodes,minimumConnections)
-        if (kandydaci.length > 1){
+          possibleNodes.push(node);
+        }
+        if (possibleNodes.length > 1){
           let maxMax = 0;
-          kandydaci.forEach(node => {
+          possibleNodes.forEach(node => {
             if (node.distance > maxMax){
               maxMax = node.distance;
               currentNode = node;
             }
           });
         }else{
-          currentNode = kandydaci[0];
+          currentNode = possibleNodes[0];
         }
       });
       activeNodes--;
-      const nodeSize = this.canvas.width / this.graphSize ;
+      const nodeSize = this.canvasSize / this.graphSize ;
       const nodeCenter = nodeSize / 2;
       await this.wait(this.animationSpeed).then(res => {
-        /*
         this.drawGraphRect(
           currentNode.x * nodeSize,
           currentNode.y * nodeSize,
-          lastX * nodeSize,
-          lastY * nodeSize);
-          */
+          nodeSize,
+          nodeSize);
+
         this.drawGraphLine(
           currentNode.x * nodeSize + nodeCenter,
           currentNode.y * nodeSize + nodeCenter,
           lastX * nodeSize + nodeCenter,
-          lastY * nodeSize + nodeCenter);        
+          lastY * nodeSize + nodeCenter);
+
       });
     }
   }
 
   drawGraphLine(x1: number, y1: number, x2: number, y2: number): void{
-    this.jumpNum += 0.1;
-    this.ctx.beginPath();
-    this.ctx.strokeStyle = `hsl(${this.jumpNum},100%,50%)`;
-    this.ctx.lineWidth = 2;
-    this.ctx.moveTo(x1, y1);
-    this.ctx.lineTo(x2, y2);
-    this.ctx.stroke();
-    this.ctx.closePath();
+    this.jumpNum += 150 / (this.graphSize * this.graphSize);
+    this.ctxPath.beginPath();
+    this.ctxPath.strokeStyle = `hsl(${150 + this.jumpNum},100%,50%)`;
+    this.ctxPath.lineWidth = 2;
+    this.ctxPath.moveTo(x1, y1);
+    this.ctxPath.lineTo(x2, y2);
+    this.ctxPath.stroke();
+    this.ctxPath.closePath();
   }
 
-  drawGraphRect(x1: number, y1: number, x2: number, y2: number): void {
-    this.ctx.beginPath();
-    this.ctx.rect(x1, y1, x2, y2);
-    this.ctx.fillStyle = this.fillColor;
-    this.ctx.fill();
-    this.ctx.strokeStyle = '#000000';
-    this.ctx.stroke();
-    this.ctx.closePath();
+  drawGraphRect(x1: number, y1: number, width: number, height: number): void {
+    this.ctxBg.beginPath();
+    this.ctxBg.rect(x1, y1, width, height);
+    this.ctxBg.fillStyle = this.fillColor;
+    this.ctxBg.fill();
+    this.ctxBg.strokeStyle = '#2e2e2e';
+    this.ctxBg.stroke();
+    this.ctxBg.closePath();
   }
 
   searchFor(x: number, y: number): Node{
