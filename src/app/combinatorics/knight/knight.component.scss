@@ -1,0 +1,32 @@
+main{
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    justify-items: center;
+
+    .buttons-wrap{
+        position: fixed;
+        display: flex;
+        top: 10%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        z-index: 10;
+
+        button{
+            margin: 0.3rem;
+        }
+    }
+
+    .options-wrap{
+        position: absolute;
+        right: 100%;
+        top: 0;
+    }
+
+    canvas{
+        position: fixed;
+        top: 10%;
+        left: 30%;
+    }
+}

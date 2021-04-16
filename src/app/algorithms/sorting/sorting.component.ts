@@ -106,17 +106,17 @@ export class SortingComponent implements OnInit {
     let j = right; // right pointer
     const loop = async () => {
       while (i <= j) {
-          while (items[i] < pivot) {
-              i++;
-          }
-          while (items[j] > pivot) {
-              j--;
-          }
-          if (i <= j) {
-              await this.swap(items, i, j); // swap two elements
-              i++;
-              j--;
-          }
+        while (items[i] < pivot) {
+            i++;
+        }
+        while (items[j] > pivot) {
+            j--;
+        }
+        if (i <= j) {
+            await this.swap(items, i, j); // swap two elements
+            i++;
+            j--;
+        }
       }
     };
 
@@ -139,7 +139,6 @@ export class SortingComponent implements OnInit {
 
   async merge(slice1: number[], slice2: number[]): Promise<number[]> {
     const sorted: number[] = [];
-
     while (slice1.length && slice2.length) {
       await this.wait(0).then(res => {
         this.swaps += 1;
@@ -149,7 +148,6 @@ export class SortingComponent implements OnInit {
           sorted.push(slice2.shift() as number);
         }
       });
-
     }
     return sorted.concat(slice1.slice().concat(slice2.slice()));
   }
@@ -168,6 +166,5 @@ export class SortingComponent implements OnInit {
   wait(ms: number): Promise < any > {
     return new Promise(res => setTimeout(res, ms));
   }
-
 
 }

@@ -1,23 +1,22 @@
 <main>
     <div class="buttons-wrap" id="buttons">
         <div class="options-wrap" id="options">
-        <app-options>  
-            <app-input-range [min]="0" [max]="500" [(inputModel)]="animationSpeed">
-                Function slowdown
-            </app-input-range>      
-            <app-input-range [min]="0" [max]="0.5" [step]="0.01" [(inputModel)]="transitionSpeed">
-                Transition duration
-            </app-input-range>   
-            <app-input-range [min]="8" [max]="200" [step]="1" [(inputModel)]="arraySize" (input)="reinitializeArrays()">
-                Array size
-            </app-input-range>  
-        </app-options>
+            <app-options>  
+                <app-input-range [min]="0" [max]="500" [(inputModel)]="animationSpeed">
+                    Function slowdown
+                </app-input-range>      
+                <app-input-range [min]="0" [max]="0.5" [step]="0.01" [(inputModel)]="transitionSpeed">
+                    Transition duration
+                </app-input-range>   
+                <app-input-range [min]="8" [max]="200" [step]="1" [(inputModel)]="arraySize" (input)="reinitializeArrays()">
+                    Array size
+                </app-input-range>  
+            </app-options>
         </div>
         <button appButtonStroked (click)="resetArray()">Reset</button>
         <button appButtonStroked (click)="stopAnimation = false;bubbleSort()">Bubble sort</button>
         <button appButtonStroked (click)="stopAnimation = false;quickSort(valueArray, 0, valueArray.length - 1);">Quick sort</button>
         <button appButtonStroked (click)="stopAnimation = false;getMergedArray(valueArray)">Merge sort</button>        
-        
     </div>
 
     <div class="sortingColumns" id="array">

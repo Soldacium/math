@@ -1,1 +1,18 @@
-<p>knight works!</p>
+<main>
+    <button (click)="knightTour()">Find road</button>
+    <div class="buttons-wrap" id="buttons">
+        <div class="options-wrap" id="options">
+            <app-options>  
+                <app-input-range [min]="0" [max]="500" [(inputModel)]="animationSpeed">
+                    Function slowdown
+                </app-input-range> 
+                <app-input-range [min]="8" [max]="50" [step]="1" [(inputModel)]="graphSize" (input)="reset()">
+                    Graph size
+                </app-input-range>  
+            </app-options>
+        </div>
+        <button appButtonStroked (click)="reset()">Reset</button>
+        <button appButtonStroked (click)="knightTour()">Start tour</button>    
+    </div>
+    <canvas id='canvas'></canvas>
+</main>
