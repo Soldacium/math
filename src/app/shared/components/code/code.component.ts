@@ -14,12 +14,18 @@ export class CodeComponent implements AfterViewInit {
   constructor() { }
 
   ngAfterViewInit(): void {
-    this.text = this.content.nativeElement.childNodes[0].childNodes[0].textContent;
-    let numberOfLines = this.text.split(/\r\n|\r|\n/).length;
+    let numberOfLines = 0;
+    let node: Node;
+
+    for(node of (this.content.nativeElement.childNodes[0].childNodes )){
+      this.text += node;
+      numberOfLines += node.textContent ? node.textContent.split(/\r\n|\r|\n/).length : 0;
+      numberOfLines -= node.nodeType === 1 ? 2 : 0;
+    }
+
     for(let i = 0; i < numberOfLines; i++){
       this.lines.push(i);
     }
-    console.log();
   }
 
 }

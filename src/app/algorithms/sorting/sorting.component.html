@@ -31,42 +31,100 @@
         </span>
         <div class="swaps">{{swaps}}</div>
     </div>
+
     <app-description>
         <app-content>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ad neque at ex repellat voluptates debitis fugiat tempora modi accusantium eum, odio sunt veritatis beatae velit tenetur consequuntur</p>
-             saepe optio maiores a molestias. Dicta voluptate a corporis possimus odit porro fuga, quisquam nihil reprehenderit velit molestias in suscipit sequi nisi recusandae quidem sint unde vitae consequuntur deserunt esse earum adipisci itaque. Consectetur autem blanditiis, maiores itaque, quaerat necessitatibus tempore debitis odit ratione omnis alias cum illum quos asperiores perferendis natus nobis, earum eveniet aliquam. Repellat, dolor accusantium beatae quam, in, et itaque fuga laudantium veniam labore obcaecati a asperiores numquam facilis aliquam quae libero voluptatibus facere eaque aliquid reiciendis sed aspernatur velit vel. Vel, blanditiis molestiae modi voluptatibus inventore fugiat provident incidunt, perferendis nulla adipisci placeat culpa deleniti voluptas exercitationem, nam optio! Amet reprehenderit iste, natus eaque dolore incidunt, facilis aspernatur ex beatae nobis laborum rem, qui quo! Repudiandae, qui odio! Assumenda non quam illum nobis quae laboriosam repellat earum animi. Similique, alias assumenda. Quam, deserunt voluptates, rerum dolorum nesciunt blanditiis ab porro doloribus laboriosam sapiente soluta tenetur odit maxime reiciendis, fugiat expedita similique at! Atque tempore exercitationem animi provident quos, quod quia aspernatur, labore, magni molestias saepe ipsum sequi quam.
+            <h1>Sorting</h1>
+            <p>One of the most essential pieces in computer science: how to get from something sorted. Firstly one must ask "why bother?", what do we need sorted arrays</p>
+            <p></p>
         </app-content>
-        <app-code>
-            <pre>
-    export class VideoService &#123;
+        <div class="pick-category">
+            <button 
+            *ngFor='let category of categories; index as i' 
+            appButtonFlat 
+            fontSize='1.3rem'
+            [ngClass]="{'active': chosenCategory(categories[i])}" 
+            (click)="pickCategory(category)">{{category}}</button>
+        </div>
+        <app-content *ngIf="chosenCategory(categories[0])">
+            <h4>Overview</h4>
+            <p>Bubble sort is one of the simplest ways one can think to sort any array. It is logical. It is clean. It is <b>VERY</b> slow.</p>
+            <h4>How does it work?</h4>
+            <p>Well, we start by looking at first two elements and comparing thier values. If we see that that arr[0] > arr[1], we swap thier places. Now arr[1] is the highest valued piece in array.
+                We continiue with comparing arr[1] and arr[2], again swapping them if we see that arr[1] > arr[2]. This process goes on until we reach the end of the array, at which poit we've found
+                our biggest element!
+            </p>
+            <p>...But nothing else, so we repeat the whole comparing process in order to find the second biggest, this time not comparing it to the last element since we know it is already bigger than
+                every other value in array. Seeing this pattern, we can conclude that in the worst case (reversed array) this algorithm will take us 
+            </p>
+            <img src="assets/images/algorithms/sorting-bubble.png" alt="">
+            <app-code>
+                <pre> 
+    array = [6, 2, 8, 4, 10];
 
-    constructor(
-        private youtubeService: YoutubeService,
-        private vimeoService: VimeoService,
-        private store: Store&lt;State&lt;) &#123;
-        this.setupStoreSubscription();
+    bubbleSort(): void&#123;
+        for (let i = this.arraySize; i > 0; i--)&#123;
+            this.bubble(i);
         &#125;
+    &#125;
     
-    lastPage = 0;
-    lastItemsPerPage = 0;
+    bubble(maxIndex: number): void&#123;
+        for (let i = 0; i < maxIndex; i++) &#123;
+        if (<b>this.array[i] > this.array[i + 1]</b>)&#123;
+            <b>this.swap(this.valueArray, i, i + 1);</b>
+            &#125;
+        &#125;
+    &#125;  
+
+    swap(items: number[], leftIndex: number, rightIndex: number): void &#123;
+        const temp = items[leftIndex];
+        items[leftIndex] = items[rightIndex];
+        items[rightIndex] = temp;
+    &#125;              
+                </pre>
+            
+            </app-code>
+        </app-content>
+        <app-content *ngIf="chosenCategory(categories[1])">
+            <h4>Overview</h4>
+            <p>Bubble sort is one of the simplest ways one can think to sort any array. It is logical. It is clean. It is <b>VERY</b> slow.</p>
+            <h4>How does it work?</h4>
+            <p>Well, we start by looking at first two elements and comparing thier values. If we see that that arr[0] > arr[1], we swap thier places. Now arr[1] is the highest valued piece in array.
+                We continiue with comparing arr[1] and arr[2], again swapping them if we see that arr[1] > arr[2]. This process goes on until we reach the end of the array, at which poit we've found
+                our biggest element!
+            </p>
+            <p>...But nothing else, so we repeat the whole comparing process in order to find the second biggest, this time not comparing it to the last element since we know it is already bigger than
+                every other value in array. Seeing this pattern, we can conclude that in the worst case (reversed array) this algorithm will take us 
+            </p>
+            <img src="assets/images/algorithms/sorting-quick.png" alt="">
+            <app-code>
+                <pre> 
+    array = [6, 2, 8, 4, 10];
+
+    bubbleSort(): void&#123;
+        for (let i = this.arraySize; i > 0; i--)&#123;
+            this.bubble(i);
+        &#125;
+    &#125;
     
-    savedVideos: Video[] = [];
-    videosMeetingSearchCriteria: Video[] = [];
-    searchedVideos: Video[] = [];
-    searchedVideosChange = new EventEmitter&lt;Video[]&lt;();
-    
-    errorEmitter = new EventEmitter&lt;string&lt;();
-    
-    searchOptions: SearchOptions = &#123;
-        videosAllowed: 'all',
-        sort: 'descending',
-        displayType: 'blocks'
-    
-        &#125;;
-    &#125;                   
-            </pre>
-        
-        </app-code>
+    bubble(maxIndex: number): void&#123;
+        for (let i = 0; i < maxIndex; i++) &#123;
+        if (<b>this.array[i] > this.array[i + 1]</b>)&#123;
+            <b>this.swap(this.valueArray, i, i + 1);</b>
+            &#125;
+        &#125;
+    &#125;  
+
+    swap(items: number[], leftIndex: number, rightIndex: number): void &#123;
+        const temp = items[leftIndex];
+        items[leftIndex] = items[rightIndex];
+        items[rightIndex] = temp;
+    &#125;              
+                </pre>
+            
+            </app-code>
+        </app-content>
+
     </app-description>
 
 </main>

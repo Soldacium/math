@@ -9,5 +9,14 @@ main{
         font-size: 1rem;
         overflow-wrap: break-word;
         word-break: break-all;
+
+        h1{
+            font-size: 5rem;
+        }
+
+        app-code{
+            width: 100%;
+            overflow: auto;
+        }
     }
 }

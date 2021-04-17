@@ -30,13 +30,19 @@ export class HanoiComponent implements OnInit {
     window.addEventListener('scroll', e => {
       const y = window.scrollY;
       const percent = y / window.innerHeight < 0.5 ? y / window.innerHeight  : 0.5;
-      this.hanoiEl.style.transform = `scale(${1 - percent * 0.7})`;
-      this.hanoiEl.style.left = `${20 - 40 * percent}%`;
+      this.hanoiEl.style.transform = `scale(${1 - percent * 0.6})`;
+      this.hanoiEl.style.left = `${20 - 38 * percent}%`;
       this.buttonsEl.style.left = `${50 - 37 * percent}%`;
       this.buttonsEl.style.top = `${10 + 40 * percent}%`;
       //this.piEl.style.left = `${50 - 37 * percent}%`;
       //this.piEl.style.top = `${88 + 5 * percent}%`;
     });
+  }
+
+  startHanoi(): void{
+    this.initializeTowers();
+    this.stopAnimation = false;
+    this.hanoi(this.numberOfCircles, this.towerA, this.towerB, this.towerC);
   }
 
   initializeTowers(): void{
@@ -45,12 +51,6 @@ export class HanoiComponent implements OnInit {
     this.towerA = new Array(this.numberOfCircles).fill(0).map((x, i) => i);
     this.towerB = [];
     this.towerC = [];
-  }
-
-  startHanoi(){
-    this.initializeTowers();
-    this.stopAnimation = false;
-    this.hanoi(this.numberOfCircles, this.towerA, this.towerB, this.towerC);
   }
 
   async hanoi(n: number, A: number[], B: number[], C: number[]){

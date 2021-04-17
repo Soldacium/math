@@ -18,6 +18,8 @@ export class SortingComponent implements OnInit {
   arrayEl!: HTMLDivElement;
   optionsEl!: HTMLDivElement;
   buttonsEl!: HTMLDivElement;
+  categories = ['Bubble sort','Quick sort', 'Merge sort']
+  category = this.categories[0];
 
   constructor() { }
 
@@ -134,7 +136,7 @@ export class SortingComponent implements OnInit {
     const mid = Math.floor(items.length / 2);
     const left = await this.mergeSort(items.slice(0, mid));
     const right = await this.mergeSort(items.slice(mid));
-    return this.merge(left, right);
+    return await this.merge(left, right);
   }
 
   async merge(slice1: number[], slice2: number[]): Promise<number[]> {
@@ -165,6 +167,14 @@ export class SortingComponent implements OnInit {
 
   wait(ms: number): Promise < any > {
     return new Promise(res => setTimeout(res, ms));
+  }
+
+  pickCategory(category: string){
+    this.category = category;
+  }
+
+  chosenCategory(category:string): boolean{
+    return this.category === category;
   }
 
 }

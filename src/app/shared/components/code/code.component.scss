@@ -13,6 +13,9 @@ main{
 
         pre{
             overflow: auto;
+            b{
+                color: var(--colorAccent1)
+            }
         }
     }
 
@@ -22,6 +25,7 @@ main{
         top: 1.8rem;
         display: flex;
         flex-direction: column;
+        pointer-events: none;
 
         .line{
             font-size: 1rem;

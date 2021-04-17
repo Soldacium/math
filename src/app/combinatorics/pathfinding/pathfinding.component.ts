@@ -109,8 +109,12 @@ export class PathfindingComponent implements OnInit {
 
   redoNodeDistances(): void{
     this.graph.forEach(node => {
-      node.distance = Math.sqrt(Math.pow(node.x - this.endCoordinates[0],2) + Math.pow(node.y - this.endCoordinates[1],2));
+      node.distance = Math.sqrt(Math.pow(node.x - this.endCoordinates[0], 2) + Math.pow(node.y - this.endCoordinates[1], 2));
     });
+  }
+
+  makeRandomWalls(): void{
+
   }
 
   newNode(
@@ -151,30 +155,30 @@ export class PathfindingComponent implements OnInit {
 
   async dijkstra(startCoordinates: number[], endCoordinates: number[]): Promise<void> {
     this.fillColor = '#555555';
-    const startNode = this.searchFor(startCoordinates[0],startCoordinates[1]);
-    const endNode = this.searchFor(endCoordinates[0],endCoordinates[1]);
+    const startNode = this.searchFor(startCoordinates[0], startCoordinates[1]);
+    const endNode = this.searchFor(endCoordinates[0], endCoordinates[1]);
     startNode.value = 0;
     let found = false;
     let nodesToCheck: Node[] = [startNode]; // current place on map
-    let potentialNodes: Node[] = []
+    let potentialNodes: Node[] = [];
     const nodeSize = this.canvasSize / this.graphSize ;
     this.stopAnimation = false;
 
-    while(!found && !this.stopAnimation){
-      for(const node of nodesToCheck){
+    while (!found && !this.stopAnimation){
+      for (const node of nodesToCheck){
         node.isSearched = true;
-        for(const connectedNodeCoordinates of node.nodeConnections){
-          const connectedNode = this.searchFor(connectedNodeCoordinates[0],connectedNodeCoordinates[1]);
-          if(connectedNode === endNode) {
-            console.log('found!', connectedNode)
+        for (const connectedNodeCoordinates of node.nodeConnections){
+          const connectedNode = this.searchFor(connectedNodeCoordinates[0], connectedNodeCoordinates[1]);
+          if (connectedNode === endNode) {
+            console.log('found!', connectedNode);
             found = true;
           }
-          if(!connectedNode.isWall && !connectedNode.isSearched){
+          if (!connectedNode.isWall && !connectedNode.isSearched){
             await this.wait(this.animationSpeed).then(res => {
               connectedNode.value = node.value + 1;
               connectedNode.isSearched = true;
               this.drawGraphRect(
-                connectedNode.x* nodeSize,
+                connectedNode.x * nodeSize,
                 connectedNode.y * nodeSize,
                 nodeSize,
                 nodeSize);
@@ -192,12 +196,23 @@ export class PathfindingComponent implements OnInit {
 
   }
 
-  aStar(){
+  async aStar(startCoordinates: number[], endCoordinates: number[]): Promise<void>{
+    this.fillColor = '#555555';
+    const startNode = this.searchFor(startCoordinates[0], startCoordinates[1]);
+    const endNode = this.searchFor(endCoordinates[0], endCoordinates[1]);
+    startNode.value = 0;
+    const found = false;
+    const nodesToCheck: Node[] = [startNode]; // current place on map
+    const potentialNodes: Node[] = [];
+    const nodeSize = this.canvasSize / this.graphSize ;
+    this.stopAnimation = false;
+    while (!found && !this.stopAnimation){
 
+    }
   }
 
   reverseRoad(endCoordinates: Array<number>, startNode: object): void {
-    let currentNode = this.searchFor(endCoordinates[0], endCoordinates[1]);
+    const currentNode = this.searchFor(endCoordinates[0], endCoordinates[1]);
     const stop = 0;
     let curCurrentNode;
     while (currentNode !== startNode && stop === 0 && currentNode.isSearched === true) {
