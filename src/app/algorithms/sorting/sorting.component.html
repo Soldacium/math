@@ -25,8 +25,7 @@
         *ngFor='let value of dummyArray; index as i' 
         [style.height]='valueArray[i] + "%"'
         [style.transition-duration] ='transitionSpeed + "s"'
-        [style.background-color]="'rgb(0, 255,'+ (128 + valueArray[i] * 1) +')'"
-        >
+        [style.background-color]="'rgb(0, 255,'+ (128 + valueArray[i] * 1) +')'">
             <span [ngClass]='activeColumns.includes(i) ? "active": "normal"'></span>
         </span>
         <div class="swaps">{{swaps}}</div>

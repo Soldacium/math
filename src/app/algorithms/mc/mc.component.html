@@ -16,41 +16,49 @@
     </div>
     <div id="PI">PI = {{4*inside/total}}</div>
     <canvas id="canvas"></canvas>
+
     <app-description>
         <app-content>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ad neque at ex repellat voluptates debitis fugiat tempora modi accusantium eum, odio sunt veritatis beatae velit tenetur consequuntur</p>
-             saepe optio maiores a molestias. Dicta voluptate a corporis possimus odit porro fuga, quisquam nihil reprehenderit velit molestias in suscipit sequi nisi recusandae quidem sint unde vitae consequuntur deserunt esse earum adipisci itaque. Consectetur autem blanditiis, maiores itaque, quaerat necessitatibus tempore debitis odit ratione omnis alias cum illum quos asperiores perferendis natus nobis, earum eveniet aliquam. Repellat, dolor accusantium beatae quam, in, et itaque fuga laudantium veniam labore obcaecati a asperiores numquam facilis aliquam quae libero voluptatibus facere eaque aliquid reiciendis sed aspernatur velit vel. Vel, blanditiis molestiae modi voluptatibus inventore fugiat provident incidunt, perferendis nulla adipisci placeat culpa deleniti voluptas exercitationem, nam optio! Amet reprehenderit iste, natus eaque dolore incidunt, facilis aspernatur ex beatae nobis laborum rem, qui quo! Repudiandae, qui odio! Assumenda non quam illum nobis quae laboriosam repellat earum animi. Similique, alias assumenda. Quam, deserunt voluptates, rerum dolorum nesciunt blanditiis ab porro doloribus laboriosam sapiente soluta tenetur odit maxime reiciendis, fugiat expedita similique at! Atque tempore exercitationem animi provident quos, quod quia aspernatur, labore, magni molestias saepe ipsum sequi quam.
-        </app-content>
-        <app-code>
-            <pre>
-    export class VideoService &#123;
+            <h1>Monte Carlo method</h1>
+            <h3>The problem</h3>
+            <p>Have you ever done any sort of math calculation where the end result just isn't right? Have you ever been tired of properly reaching conclusion to the equation? Have you got talent for quickly
+                doing hundreds of thousands calculations per second in your head? Well, Monte carlo method is for you.
+            </p>
+            <h3>The solution</h3>
+            <p>Monte Carlo method - equivalent of breaking down the door instead of trying to find the keys in your pockets, just because you have the strength. It sounds stupid, until you realize 
+                that sometimes you don't have the keys at all or can't be bothered to look for someone who has. With Monte Carlo method you can approximate solution to any equation (theoretically). How?
+                With <b>random chance.</b> Let's assume, for example, that you forgot how to get the disc area but you know how to calculate a square. All you have to do then, is to make a square with side 
+                of <b>r*2</b> around the disc in question and then...
+            </p>
+            <p>Throw darts randomly at the square. Yes, this is it. <b>You throw them until you have large sample size</b> like 1000 or 10000. After that you calculate how many darts landed in the disc versus 
+            how many landed in the square but NOT in the disc. The area of your disc will be (r*2)^2 * pointsInside/pointsOutside. Viola! No need for knowledge, just brute forcing yourself towards solution.</p>
+            <h3>Usage</h3>
 
-    constructor(
-        private youtubeService: YoutubeService,
-        private vimeoService: VimeoService,
-        private store: Store&lt;State&lt;) &#123;
-        this.setupStoreSubscription();
+            <h3>Example code</h3>
+            <app-code>
+                <pre>
+    circleRadius = 4;
+    squareSide = circleRadius * 2;
+    discArea = 0;
+    insidePoints = 0;
+    outsidePoints = 0;
+    totalPoints = 0;
+
+    for(let i = 0; i < 10000; i++)&#123;
+        const x = Math.random() * this.squareSide;
+        const y = Math.random() * this.squareSide;
+        if (Math.pow(x - this.circleRadius, 2) + Math.pow(y - this.circleRadius, 2) < Math.pow(this.circleRadius, 2))&#123;
+            this.insidePoints += 1;
+        &#125;else&#123;
+            this.outsidePoints += 1;
         &#125;
-    
-    lastPage = 0;
-    lastItemsPerPage = 0;
-    
-    savedVideos: Video[] = [];
-    videosMeetingSearchCriteria: Video[] = [];
-    searchedVideos: Video[] = [];
-    searchedVideosChange = new EventEmitter&lt;Video[]&lt;();
-    
-    errorEmitter = new EventEmitter&lt;string&lt;();
-    
-    searchOptions: SearchOptions = &#123;
-        videosAllowed: 'all',
-        sort: 'descending',
-        displayType: 'blocks'
-    
-        &#125;;
-    &#125;                   
-            </pre>
-        
-        </app-code>
+        this.totalPoints += 1;          
+    &#125;
+
+    this.discArea = Math.pow(this.squareSide,2) * insidePoints / outsidePoints;
+                </pre>
+            
+            </app-code>
+        </app-content>
     </app-description>
 </main>

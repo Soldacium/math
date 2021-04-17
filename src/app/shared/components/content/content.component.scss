@@ -4,14 +4,33 @@ main{
     flex-wrap: wrap;
     flex-direction: column;
     padding-bottom: 2rem;
+    word-break: break-word;
 
     ::ng-deep{
-        font-size: 1rem;
-        overflow-wrap: break-word;
-        word-break: break-all;
+        font-size: 1.1rem;
+        word-break: break-word;
+        p{
+            
+        }
 
         h1{
             font-size: 5rem;
+            
+        }
+
+        h2,h3,h4,h5{
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #3d3d3d;
+            margin-top: 4rem;
+            &::first-letter{
+                color: var(--colorAccent3);
+            }
+        }
+
+        a{
+            text-decoration: none;
+            border-bottom: 1px solid var(--colorAccent3);
+            color: var(--colorAccent3);
         }
 
         app-code{

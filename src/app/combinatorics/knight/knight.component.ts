@@ -116,14 +116,6 @@ export class KnightComponent implements OnInit {
     }
   }
 
-
-  // oblicz dystans tego node od centrum
-  // wyznacz połączone nody
-  // uzyj wektorów by sprawdzic ktore skoki rycerza są mozliwe
-  // dla każdego wektora, spróbuj skoczyć o ten wektor
-  // koordynaty połączenia, x w [0], y w [1]
-  // jeżeli połączenie jest z intniejącym elementem planszy, dodaj do listy połączeń (pola oznaczone od 0 do size-1)
-  // stwórz obiekt node i dodaj go do listy node'ów
   makeNodes(): void {
     this.graph = [];
     for (let x = 0; x < this.graphSize; x++) {
@@ -172,8 +164,6 @@ export class KnightComponent implements OnInit {
       }
     }
   }
-
-
 
   // wyłączmy obenego node na semym początu bo juz na nim jesteśmy
   // po kolei sprawdzamy punkty do których mozna isc z current node (obecnego miejsca)
