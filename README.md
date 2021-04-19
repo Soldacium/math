@@ -20,11 +20,15 @@ Project done mostly in Angular/Typescript, some features should be double-checke
 - Data science
     - Letter detection
     - Regression
+    - Clustering
 - Mathematical Analysis
     - Differencial equations
     - Exhaution method
+    - Population
+    
 - Geometry
-    - Fractals
+    - Fractals (sierpinski, tree, mendelbrot)
+    - Voronoi diagram
 
 ## Project structure
 

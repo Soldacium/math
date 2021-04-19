@@ -18,7 +18,7 @@ export class SortingComponent implements OnInit {
   arrayEl!: HTMLDivElement;
   optionsEl!: HTMLDivElement;
   buttonsEl!: HTMLDivElement;
-  categories = ['Bubble sort','Quick sort', 'Merge sort']
+  categories = ['Bubble sort','Quick sort', 'Merge sort', 'Selection sort']
   category = this.categories[0];
 
   constructor() { }
@@ -123,6 +123,23 @@ export class SortingComponent implements OnInit {
     };
 
     return loop().then(res => i);
+  }
+
+  startSelectionSort(){
+    this.selectionSort(this.valueArray,this.valueArray.length)
+  }
+
+  async selectionSort(items: number[], n: number){
+    let minIndex = 0;
+    for(let i = 0; i < n - 1; i++){
+      minIndex = i;
+      for(let j = i + 1; j < n; j++){
+        if(items[j] < items[minIndex]){
+          minIndex = j;
+        }
+      }
+      await this.swap(items,minIndex,i);
+    }
   }
 
   getMergedArray(items: number[]): void{

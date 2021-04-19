@@ -2,6 +2,8 @@ main{
     width: 100%;
     position: relative;
     background-color: var(--colorSecondary);
+    border-radius: 0.5rem;
+    z-index: 100;
     
 }
 
@@ -12,6 +14,7 @@ main{
     white-space: pre-wrap;
     border: 3px solid var(--colorSecondary);
     padding: 2rem;
+    border-radius: 0.5rem;
 
     ::ng-deep{
         img{
@@ -27,8 +30,6 @@ main{
     left: -30px;
     top: -30px;
     z-index: 10;
-
-    
 
     @for $i from 6 through 10{
         &:nth-child(#{$i}) {

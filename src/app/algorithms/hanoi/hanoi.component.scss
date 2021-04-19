@@ -24,12 +24,25 @@ main{
         top: 0;
     }
 
-    #PI{
+    #info{
         position: fixed;
-        top: 88%;
+        top: 85%;
         left: 50%;
         transform: translate(-50%,-50%);
         z-index: 50;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .note{
+            opacity: 0.15;
+            transition: 0.1s;
+            cursor: default;
+            &:hover{
+                opacity: 0.5;
+            }
+        }
     }
 
     app-description{

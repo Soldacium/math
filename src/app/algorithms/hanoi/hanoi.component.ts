@@ -16,6 +16,7 @@ export class HanoiComponent implements OnInit {
   stopAnimation = false;
   buttonsEl!: HTMLDivElement;
   hanoiEl!: HTMLDivElement;
+  infoEl!: HTMLDivElement;
 
   constructor() { }
 
@@ -27,6 +28,7 @@ export class HanoiComponent implements OnInit {
   addScrollLogic(): void{
     this.buttonsEl = document.getElementById('buttons') as HTMLDivElement;
     this.hanoiEl = document.getElementById('hanoi') as HTMLDivElement;
+    this.infoEl = document.getElementById('info') as HTMLDivElement;
     window.addEventListener('scroll', e => {
       const y = window.scrollY;
       const percent = y / window.innerHeight < 0.5 ? y / window.innerHeight  : 0.5;
@@ -34,8 +36,8 @@ export class HanoiComponent implements OnInit {
       this.hanoiEl.style.left = `${20 - 38 * percent}%`;
       this.buttonsEl.style.left = `${50 - 37 * percent}%`;
       this.buttonsEl.style.top = `${10 + 40 * percent}%`;
-      //this.piEl.style.left = `${50 - 37 * percent}%`;
-      //this.piEl.style.top = `${88 + 5 * percent}%`;
+      this.infoEl.style.left = `${50 - 37 * percent}%`;
+      this.infoEl.style.top = `${85 - 10 * percent}%`;
     });
   }
 

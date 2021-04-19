@@ -34,19 +34,27 @@ main{
         flex-wrap: nowrap;
         transform: scaleY(-1);
         backface-visibility: hidden;
-        z-index: -1;
+        z-index: 1;
 
-        >span{
+        .column{
             display: flex;
             flex: 1 1 0.5rem;
             margin: 1px;
             background-color: white;
             transition: 0.01s ease height;
             position: relative;
-            overflow: hidden;
             bottom: 0;
+            opacity: 1;
             height: 0%;
             border-radius: 3px;
+            
+            &:hover{
+                cursor: pointer;
+                opacity: 0.90;
+                .column-value{
+                    opacity: 1;
+                }
+            }
 
             span{
                 position: relative;
@@ -57,7 +65,18 @@ main{
                     background-color: var(--colorAccent1);
                 }
             }
+
+            .column-value{
+                position: absolute;
+                top: -2.5rem;
+                left: 50%;
+                transition: 0.15s ease;
+                opacity: 0;
+                transform: scaleY(-1) translate(-50%,-50%);
+            }
         }
+
+
 
         .swaps{
             position: absolute;
