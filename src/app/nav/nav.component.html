@@ -31,11 +31,11 @@
     <div class="field" [ngClass]="{'active': checkIfActive('chaos')}">
         <div class="field-name"  routerLinkActive="active"> 
             <img src="assets/icons/chaosTheory.svg" alt="">
-            <a [routerLink]='["algorithms"]' routerLinkActive="active">Dynamical Systems</a> 
+            <a [routerLink]='["chaos"]' routerLinkActive="active">Chaos theory</a> 
             <img src="assets/icons/arrow-right.svg" (click)='addActiveCategory("chaos")' alt="">
         </div>
         <div class="concepts">
-            <a [routerLink]='["algorithms/hanoi"]' routerLinkActive="active">Lorenz attractor</a>
+            <a [routerLink]='["chaos/hanoi"]' routerLinkActive="active">Lorenz attractor</a>
             <a [routerLink]='["algorithms/sorting"]' routerLinkActive="active">Ablion sandpile</a>
             <a [routerLink]='["algorithms/monte-carlo"]' routerLinkActive="active">Double pendulum</a>
         </div>

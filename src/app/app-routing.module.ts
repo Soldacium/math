@@ -18,6 +18,12 @@ const routes: Routes = [
     loadChildren: () => import('@combinatorics/combinatorics.module').then(m =>
       m.CombinatoricsModule
     )
+  },
+  {
+    path: 'chaos',
+    loadChildren: () => import('@chaos/chaos.module').then(m =>
+      m.ChaosModule
+    )
   }
 ];
 

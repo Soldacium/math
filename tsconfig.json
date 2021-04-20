@@ -23,6 +23,7 @@
     "paths": {
         "@algorithms/*": ["app/algorithms/*"],
         "@combinatorics/*": ["app/combinatorics/*"],
+        "@chaos/*": ["app/chaos/*"],
         "@services/*": ["app/services/*"],
         "@shared/*": ["app/shared/*"],
         "@appRoot/*": ["app/*"],
