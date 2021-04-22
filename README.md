@@ -13,7 +13,8 @@ Project done mostly in Angular/Typescript, some features should be double-checke
     - Pathfinding
     - Knight's tour
     - Self-avoiding walk
-- Dynamical systems
+- Chaos theory
+    - Logistic maps
     - Lorenz attractor
     - Ablion sandpile
     - Double(2+) pendulum
