@@ -43,4 +43,17 @@
 
         </span>
     </div>
+    <div class="field" [ngClass]="{'active': checkIfActive('geometry')}">
+        <div class="field-name"  routerLinkActive="active"> 
+            <img src="assets/icons/geometry.svg" alt="">
+            <a [routerLink]='["geometry"]' routerLinkActive="active">Geometry</a> 
+            <img src="assets/icons/arrow-right.svg" (click)='addActiveCategory("geometry")' alt="">
+        </div>
+        <div class="concepts">
+            <a [routerLink]='["geometry/fractals"]' routerLinkActive="active">Fractals</a>
+        </div>
+        <span class="square">
+
+        </span>
+    </div>
 </nav>

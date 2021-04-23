@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { atan2, chain, derivative, e, evaluate, log, pi, pow, round, sqrt } from 'mathjs';
 
 @Component({
   selector: 'app-lorenz',

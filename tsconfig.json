@@ -24,6 +24,7 @@
         "@algorithms/*": ["app/algorithms/*"],
         "@combinatorics/*": ["app/combinatorics/*"],
         "@chaos/*": ["app/chaos/*"],
+        "@geometry/*": ["app/geometry/*"],
         "@services/*": ["app/services/*"],
         "@shared/*": ["app/shared/*"],
         "@appRoot/*": ["app/*"],

@@ -24,6 +24,12 @@ const routes: Routes = [
     loadChildren: () => import('@chaos/chaos.module').then(m =>
       m.ChaosModule
     )
+  },
+  {
+    path: 'geometry',
+    loadChildren: () => import('@geometry/geometry.module').then(m =>
+      m.GeometryModule
+    )
   }
 ];
 
