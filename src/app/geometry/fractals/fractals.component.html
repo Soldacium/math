@@ -1,1 +1,148 @@
-<p>fractals works!</p>
+<main>
+    <div class="buttons-wrap" id="buttons">
+        <div class="options-wrap" id="options">
+            <app-options>  
+                <app-input-range [min]="0" [max]="500" [(inputModel)]="animationSpeed">
+                    Function slowdown
+                </app-input-range>
+            </app-options>
+        </div>
+        <button appButtonStroked (click)="reset()">Reset</button>
+        <button appButtonStroked (click)="tree()">Tree</button>     
+    </div>
+    <canvas id="canvas"></canvas>
+
+    <app-description>
+        <app-content>
+            <h1>Sorting</h1>
+            <p>One of the most essential pieces in computer science: how to get from something sorted. Firstly one must ask "why bother?", what do we need sorted arrays</p>
+            <p></p>
+        </app-content>
+        <div class="pick-category">
+            <button 
+            *ngFor='let category of categories; index as i' 
+            appButtonFlat 
+            fontSize='1.3rem'
+            [ngClass]="{'active': chosenCategory(categories[i])}" 
+            (click)="pickCategory(category)">{{category}}</button>
+        </div>
+        <app-content *ngIf="chosenCategory(categories[0])">
+            <h4>Overview</h4>
+            <p>Bubble sort is one of the simplest ways one can think to sort any array. It is logical. It is clean. It is <b>VERY</b> slow.</p>
+            <h4>How does it work?</h4>
+            <p>Well, we start by looking at first two elements and comparing thier values. If we see that that arr[0] > arr[1], we swap thier places. Now arr[1] is the highest valued piece in array.
+                We continiue with comparing arr[1] and arr[2], again swapping them if we see that arr[1] > arr[2]. This process goes on until we reach the end of the array, at which poit we've found
+                our biggest element!
+            </p>
+            <p>...But nothing else, so we repeat the whole comparing process in order to find the second biggest, this time not comparing it to the last element since we know it is already bigger than
+                every other value in array. Seeing this pattern, we can conclude that in the worst case (reversed array) this algorithm will take us 
+            </p>
+            <img src="assets/images/algorithms/sorting-bubble.png" alt="">
+            <app-code>
+                <pre> 
+    array = [6, 2, 8, 4, 10];
+
+    bubbleSort(): void&#123;
+        for (let i = this.arraySize; i > 0; i--)&#123;
+            this.bubble(i);
+        &#125;
+    &#125;
+    
+    bubble(maxIndex: number): void&#123;
+        for (let i = 0; i < maxIndex; i++) &#123;
+        if (<b>this.array[i] > this.array[i + 1]</b>)&#123;
+            <b>this.swap(this.valueArray, i, i + 1);</b>
+            &#125;
+        &#125;
+    &#125;  
+
+    swap(items: number[], leftIndex: number, rightIndex: number): void &#123;
+        const temp = items[leftIndex];
+        items[leftIndex] = items[rightIndex];
+        items[rightIndex] = temp;
+    &#125;              
+                </pre>
+            
+            </app-code>
+        </app-content>
+        <app-content *ngIf="chosenCategory(categories[1])">
+            <h4>Overview</h4>
+            <p>Bubble sort is one of the simplest ways one can think to sort any array. It is logical. It is clean. It is <b>VERY</b> slow.</p>
+            <h4>How does it work?</h4>
+            <p>Well, we start by looking at first two elements and comparing thier values. If we see that that arr[0] > arr[1], we swap thier places. Now arr[1] is the highest valued piece in array.
+                We continiue with comparing arr[1] and arr[2], again swapping them if we see that arr[1] > arr[2]. This process goes on until we reach the end of the array, at which poit we've found
+                our biggest element!
+            </p>
+            <p>...But nothing else, so we repeat the whole comparing process in order to find the second biggest, this time not comparing it to the last element since we know it is already bigger than
+                every other value in array. Seeing this pattern, we can conclude that in the worst case (reversed array) this algorithm will take us 
+            </p>
+            <img src="assets/images/algorithms/sorting-quick.png" alt="">
+            <app-code>
+                <pre> 
+    array = [6, 2, 8, 4, 10];
+
+    bubbleSort(): void&#123;
+        for (let i = this.arraySize; i > 0; i--)&#123;
+            this.bubble(i);
+        &#125;
+    &#125;
+    
+    bubble(maxIndex: number): void&#123;
+        for (let i = 0; i < maxIndex; i++) &#123;
+        if (<b>this.array[i] > this.array[i + 1]</b>)&#123;
+            <b>this.swap(this.valueArray, i, i + 1);</b>
+            &#125;
+        &#125;
+    &#125;  
+
+    swap(items: number[], leftIndex: number, rightIndex: number): void &#123;
+        const temp = items[leftIndex];
+        items[leftIndex] = items[rightIndex];
+        items[rightIndex] = temp;
+    &#125;              
+                </pre>
+            
+            </app-code>
+        </app-content>
+        <app-content *ngIf="chosenCategory(categories[3])">
+            <h4>Overview</h4>
+            <p>Bubble sort is one of the simplest ways one can think to sort any array. It is logical. It is clean. It is <b>VERY</b> slow.</p>
+            <h4>How does it work?</h4>
+            <p>Well, we start by looking at first two elements and comparing thier values. If we see that that arr[0] > arr[1], we swap thier places. Now arr[1] is the highest valued piece in array.
+                We continiue with comparing arr[1] and arr[2], again swapping them if we see that arr[1] > arr[2]. This process goes on until we reach the end of the array, at which poit we've found
+                our biggest element!
+            </p>
+            <p>...But nothing else, so we repeat the whole comparing process in order to find the second biggest, this time not comparing it to the last element since we know it is already bigger than
+                every other value in array. Seeing this pattern, we can conclude that in the worst case (reversed array) this algorithm will take us 
+            </p>
+            <img src="assets/images/algorithms/sorting-select.png" alt="">
+            <app-code>
+                <pre> 
+    array = [6, 2, 8, 4, 10];
+
+    bubbleSort(): void&#123;
+        for (let i = this.arraySize; i > 0; i--)&#123;
+            this.bubble(i);
+        &#125;
+    &#125;
+    
+    bubble(maxIndex: number): void&#123;
+        for (let i = 0; i < maxIndex; i++) &#123;
+        if (<b>this.array[i] > this.array[i + 1]</b>)&#123;
+            <b>this.swap(this.valueArray, i, i + 1);</b>
+            &#125;
+        &#125;
+    &#125;  
+
+    swap(items: number[], leftIndex: number, rightIndex: number): void &#123;
+        const temp = items[leftIndex];
+        items[leftIndex] = items[rightIndex];
+        items[rightIndex] = temp;
+    &#125;              
+                </pre>
+            
+            </app-code>
+        </app-content>
+
+    </app-description>
+</main>

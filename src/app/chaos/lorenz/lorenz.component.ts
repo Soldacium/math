@@ -36,8 +36,6 @@ export class LorenzComponent implements OnInit {
     return -1;
   }
 
-
-
   equation(x: number, y: number, z: number){
     return {
       x: this.sigma * (y - x),
@@ -46,12 +44,12 @@ export class LorenzComponent implements OnInit {
   }
 
   calculateEquations(){
-    let start = {x: 2, y: 1, z: 1};
-    for(let i = 0; i < 0.5; i+=0.01){
-      
-      console.log(this.equation(start.x+i,start.y+i,start.z+i));
+    const start = {x: 2, y: 1, z: 1};
+    for (let i = 0; i < 0.5; i += 0.01){
+
+      console.log(this.equation(start.x + i, start.y + i, start.z + i));
     }
   }
-    
+
 
 }
