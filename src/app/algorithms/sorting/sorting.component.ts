@@ -125,11 +125,11 @@ export class SortingComponent implements OnInit {
     return loop().then(res => i);
   }
 
-  startSelectionSort(){
+  startSelectionSort(): void {
     this.selectionSort(this.valueArray, this.valueArray.length);
   }
 
-  async selectionSort(items: number[], n: number){
+  async selectionSort(items: number[], n: number): Promise<void> {
     let minIndex = 0;
     for (let i = 0; i < n - 1; i++){
       minIndex = i;
@@ -186,7 +186,7 @@ export class SortingComponent implements OnInit {
     return new Promise(res => setTimeout(res, ms));
   }
 
-  pickCategory(category: string){
+  pickCategory(category: string): void{
     this.category = category;
   }
 

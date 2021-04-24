@@ -24,73 +24,31 @@ main{
          
     }
     
-    .sortingColumns{
-        height: 50vh;
-        width: 50vw;
-        top: 30%;
-        left: 25%;
-        position: fixed;
-        display: flex;
-        flex-wrap: nowrap;
-        transform: scaleY(-1);
-        backface-visibility: hidden;
-        z-index: 1;
-
-        .column{
-            display: flex;
-            flex: 1 1 0.5rem;
-            margin: 1px;
-            background-color: white;
-            transition: 0.01s ease height;
-            position: relative;
-            bottom: 0;
-            opacity: 1;
-            height: 0%;
-            border-radius: 3px;
-            
-            &:hover{
-                cursor: pointer;
-                opacity: 0.90;
-                .column-value{
-                    opacity: 1;
-                }
-            }
-
-            span{
-                position: relative;
-                height: 100%;
-                width: 100%;
-
-                &.active{
-                    background-color: var(--colorAccent1);
-                }
-            }
-
-            .column-value{
-                position: absolute;
-                top: -2.5rem;
-                left: 50%;
-                transition: 0.15s ease;
-                opacity: 0;
-                transform: scaleY(-1) translate(-50%,-50%);
-            }
-        }
-
-
-
-        .swaps{
-            position: absolute;
-            left: 50%;
-            top: -5%;
-            transform: translate(-50%,-50%) scaleY(-1);
-        }
-    }
 
     app-description{
         width: 40vw;
         top: 100%;
         margin-top: 100vh;
         position: relative;
+    }
+
+    canvas{
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+        z-index: -1;
+
+    }        
+    .loading{
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+        height: 3rem;
+        width: 3rem;
+        background-color: white;
+        z-index: 4;
     }
 
     .pick-category{

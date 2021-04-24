@@ -5,12 +5,27 @@
                 <app-input-range [min]="0" [max]="500" [(inputModel)]="animationSpeed">
                     Function slowdown
                 </app-input-range>
+                <app-input-range [min]="5" [max]="10" [(inputModel)]="maxDepth">
+                    Fractal depth
+                </app-input-range>
+                <app-input-range [min]="0" [max]="360" [(inputModel)]="branchAngle">
+                    Branch angle
+                </app-input-range>
+                <app-input-range [min]="20" [max]="200" [(inputModel)]="branchHeight">
+                    Branch height
+                </app-input-range>
+                <app-input-range [min]="5" [max]="50" [(inputModel)]="lineWidth">
+                    Line width
+                </app-input-range>
             </app-options>
         </div>
         <button appButtonStroked (click)="reset()">Reset</button>
         <button appButtonStroked (click)="tree()">Tree</button>     
     </div>
-    <canvas id="canvas"></canvas>
+    <canvas id="canvas">
+        
+    </canvas>
+    <div class="loading" *ngIf='loading | async'></div>
 
     <app-description>
         <app-content>
