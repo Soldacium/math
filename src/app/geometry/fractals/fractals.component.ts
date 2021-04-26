@@ -113,6 +113,10 @@ export class FractalsComponent implements OnInit {
     this.ctx.restore();
   }
 
+  async drawSierpinski(): Promise<void> {
+
+  }
+
   animate(): void {
     requestAnimationFrame(() => {this.animate(); });
   }
