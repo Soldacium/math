@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Node } from '@shared/models/node.model';
 
 @Component({
   selector: 'app-pathfinding',
@@ -18,7 +19,7 @@ export class PathfindingComponent implements OnInit {
   stopAnimation = false;
   startCoordinates = [0, 0];
   endCoordinates = [16, 16];
-  graph: Node[] = [];
+  graph: NodePath[] = [];
   graphSize = 26;
   animationSpeed = 10;
   movementVector = [1, 1];
@@ -100,7 +101,7 @@ export class PathfindingComponent implements OnInit {
             nodeConnections.push(connection);
           }
         });
-        const node: Node = this.newNode(x, y, dist, 0, nodeConnections, 5, nodeConnections.length, false, false);
+        const node: NodePath = this.newNode(x, y, dist, 0, nodeConnections, 5, nodeConnections.length, false, false);
         this.graph.push(node);
       }
     }
@@ -126,7 +127,7 @@ export class PathfindingComponent implements OnInit {
     radius: number,
     activeConnections: number,
     isSearched: boolean,
-    isWall: boolean): Node {
+    isWall: boolean): NodePath {
     return {
       x,
       y,
@@ -159,8 +160,8 @@ export class PathfindingComponent implements OnInit {
     const endNode = this.searchFor(endCoordinates[0], endCoordinates[1]);
     startNode.value = 0;
     let found = false;
-    let nodesToCheck: Node[] = [startNode]; // current place on map
-    let potentialNodes: Node[] = [];
+    let nodesToCheck: NodePath[] = [startNode]; // current place on map
+    let potentialNodes: NodePath[] = [];
     const nodeSize = this.canvasSize / this.graphSize ;
     this.stopAnimation = false;
 
@@ -202,8 +203,8 @@ export class PathfindingComponent implements OnInit {
     const endNode = this.searchFor(endCoordinates[0], endCoordinates[1]);
     startNode.value = 0;
     const found = false;
-    const nodesToCheck: Node[] = [startNode]; // current place on map
-    const potentialNodes: Node[] = [];
+    const nodesToCheck: NodePath[] = [startNode]; // current place on map
+    const potentialNodes: NodePath[] = [];
     const nodeSize = this.canvasSize / this.graphSize ;
     this.stopAnimation = false;
     while (!found && !this.stopAnimation){
@@ -231,13 +232,13 @@ export class PathfindingComponent implements OnInit {
 
   }
 
-  searchFor(x: number, y: number): Node{
+  searchFor(x: number, y: number): NodePath{
     const nodeNumber = x * this.graphSize + y;
     return this.graph[nodeNumber];
   }
 
-  searchForNodes(value: number ): Node[] {
-    const nextNodes: Node[] = [];
+  searchForNodes(value: number ): NodePath[] {
+    const nextNodes: NodePath[] = [];
     this.graph.forEach(node => {
         if (node.value == value) {
             nextNodes.push(node);
@@ -273,14 +274,7 @@ export class PathfindingComponent implements OnInit {
 
 }
 
-export interface Node{
-  x: number;
-  y: number;
-  nodeConnections: number[][];
-  activeConnections: number;
-  distance: number;
-  value: number;
-  radius: number;
+export interface NodePath extends Node{
   isSearched: boolean;
   isWall: boolean;
 }

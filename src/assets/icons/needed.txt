@@ -1,0 +1,7 @@
+poocoin
+coingecko
+binance
+pancakeswap
+dxsale
+unicrypt
+bscscan
