@@ -14,6 +14,7 @@ export class EulerCycleComponent implements OnInit {
   movementVectors: number[][] = [
     [0, 1], [0, -1], [1, 0], [-1, 0],
   ];
+  animationSpeed = 10;
 
   constructor() { }
 
@@ -29,6 +30,10 @@ export class EulerCycleComponent implements OnInit {
 
     this.hierholzerAlgorithm(newGraph)
     */
+  }
+
+  reset(){
+    this.numOfNodes = Math.pow(this.graphSize, 2);
   }
 
   makeEvenDegreeNode(node: Node){
