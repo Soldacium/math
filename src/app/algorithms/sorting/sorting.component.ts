@@ -142,6 +142,19 @@ export class SortingComponent implements OnInit {
     }
   }
 
+  async insertionSort(items: number[]): Promise<void> {
+    let x, j;
+    for (let i = 1; i < items.length; i++){
+      x = items[i];
+      j = i - 1;
+      while (items[j] > x && j >= 0){
+        items[j + 1] = items[j];
+        j--;
+      }
+      items[j + 1] = x;
+    }
+  }
+
   getMergedArray(items: number[]): void{
     this.mergeSort(items).then(res => this.valueArray = res);
   }
