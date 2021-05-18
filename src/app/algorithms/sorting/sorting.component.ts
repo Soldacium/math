@@ -26,6 +26,10 @@ export class SortingComponent implements OnInit {
   ngOnInit(): void {
     this.valueArray = this.valueArray.map(x => Math.floor(Math.random() * 100));
     this.addScrollLogic();
+
+    let testArr = [1,-6,214,34,51,345];
+    this.shellSort(testArr,testArr.length);
+    console.log(testArr);
   }
 
   addScrollLogic(): void{
@@ -91,11 +95,11 @@ export class SortingComponent implements OnInit {
   async quickSort(items: number[], left: number, right: number): Promise<number[]> {
     let index = 0;
     if (items.length > 1 && this.stopAnimation === false) {
-      index = await this.partition(items, left, right); // index returned from partition
-      if (left < index - 1) { // more elements on the left side of the pivot
+      index = await this.partition(items, left, right);
+      if (left < index - 1) {
         await this.quickSort(items, left, index - 1);
       }
-      if (index < right) { // more elements on the right side of the pivot
+      if (index < right) {
         await this.quickSort(items, index, right);
       }
     }
@@ -103,9 +107,9 @@ export class SortingComponent implements OnInit {
   }
 
   async partition(items: number[], left: number, right: number): Promise<number> {
-    const pivot   = items[Math.floor((right + left) / 2)]; // middle element
-    let i = left; // left pointer
-    let j = right; // right pointer
+    const pivot   = items[Math.floor((right + left) / 2)];
+    let i = left;
+    let j = right;
     const loop = async () => {
       while (i <= j) {
         while (items[i] < pivot) {
@@ -115,19 +119,16 @@ export class SortingComponent implements OnInit {
             j--;
         }
         if (i <= j) {
-            await this.swap(items, i, j); // swap two elements
+            await this.swap(items, i, j);
             i++;
             j--;
         }
       }
     };
-
     return loop().then(res => i);
   }
 
-  startSelectionSort(): void {
-    this.selectionSort(this.valueArray, this.valueArray.length);
-  }
+
 
   async selectionSort(items: number[], n: number): Promise<void> {
     let minIndex = 0;
@@ -143,15 +144,67 @@ export class SortingComponent implements OnInit {
   }
 
   async insertionSort(items: number[]): Promise<void> {
-    let x, j;
+    let x = 0;
+    let j = 0;
     for (let i = 1; i < items.length; i++){
       x = items[i];
       j = i - 1;
       while (items[j] > x && j >= 0){
-        items[j + 1] = items[j];
+        await this.wait(this.animationSpeed).then((res) => {
+          items[j + 1] = items[j];
+          this.swaps += 1;
+        });
         j--;
       }
       items[j + 1] = x;
+    }
+  }
+
+  async shellSort(arr: number[], n: number): Promise<void>{
+    for (let gap = n / 2; gap > 0; gap /= 2){
+      gap = Math.floor(gap);
+      for (let i = gap; i < n; i += 1){
+        const temp = arr[i];
+        let j: number;
+        for (j = i; j >= gap && arr[j - gap] > temp; j -= gap) {
+          await this.wait(this.animationSpeed).then(() => {
+            arr[j] = arr[j - gap];
+            this.swaps += 1;
+          });
+        }
+        arr[j] = temp;
+      }
+    }
+  }
+
+  async heapSort(arr: number[], n: number): Promise<void>{
+    for (let i = n / 2 - 1; i >= 0; i--) {
+      await this.heapify(arr, n, i);
+    }
+
+    for (let i = n - 1; i > 0; i--) {
+      await this.swap(arr, 0, i);
+      await this.heapify(arr, i, 0);
+    }
+  }
+
+  async heapify(arr: number[], n: number, i: number): Promise<void>{
+    let largest = i;
+    const l = 2 * i + 1;
+    const r = 2 * i + 2;
+
+    if (l < n && arr[l] > arr[largest]) {
+      largest = l;
+    }
+
+    if (r < n && arr[r] > arr[largest]) {
+      largest = r;
+    }
+
+    if (largest !== i) {
+      await this.swap(arr, i, largest);
+
+      await this.heapify(arr, n, largest);
     }
   }
 

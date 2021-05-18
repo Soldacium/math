@@ -17,7 +17,10 @@
         <button appButtonStroked (click)="stopAnimation = false;bubbleSort()">Bubble sort</button>
         <button appButtonStroked (click)="stopAnimation = false;quickSort(valueArray, 0, valueArray.length - 1);">Quick sort</button>
         <button appButtonStroked (click)="stopAnimation = false;getMergedArray(valueArray)">Merge sort</button>  
-        <button appButtonStroked (click)="stopAnimation = false;selectionSort(valueArray,valueArray.length)">Selection sort</button>       
+        <button appButtonStroked (click)="stopAnimation = false;selectionSort(valueArray,valueArray.length)">Selection sort</button>
+        <button appButtonStroked (click)="stopAnimation = false;heapSort(valueArray,valueArray.length)">Heap sort</button>  
+        <button appButtonStroked (click)="stopAnimation = false;shellSort(valueArray,valueArray.length)">Shell sort</button>  
+        <button appButtonStroked (click)="stopAnimation = false;insertionSort(valueArray)">Insertion sort</button>  
     </div>
 
     <div class="sortingColumns" id="array">
