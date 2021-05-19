@@ -96,9 +96,14 @@ main{
     .pick-category{
         width: 100%;
         display: flex;
-        margin-bottom: 0.5rem;
-        padding-bottom: 1rem;
+        flex-wrap: wrap;
+        margin-bottom: 1.5rem;
+        padding: 0.5rem 0.25rem;
+
         border-bottom: 3px solid rgb(51, 51, 51);
+        border-top: 3px solid rgb(51, 51, 51);
+        border-radius: 0.5rem;
+        background-color: var(--colorPrimary);
 
         button{
             font-size: 2rem;

@@ -4,6 +4,8 @@ main{
     background-color: var(--colorPrimary);
     position: relative;
     border-radius: 1rem;
+    border-bottom: 3px solid rgb(51, 51, 51);
+    border-top: 3px solid rgb(51, 51, 51);
 
     code{
         overflow: auto;

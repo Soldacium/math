@@ -18,7 +18,7 @@ export class SortingComponent implements OnInit {
   arrayEl!: HTMLDivElement;
   optionsEl!: HTMLDivElement;
   buttonsEl!: HTMLDivElement;
-  categories = ['Bubble sort', 'Quick sort', 'Merge sort', 'Selection sort'];
+  categories = ['Bubble sort', 'Insertion sort', 'Selection sort', 'Heap sort', 'Shell sort', 'Quick sort', 'Merge sort'];
   category = this.categories[0];
 
   constructor() { }
@@ -27,8 +27,8 @@ export class SortingComponent implements OnInit {
     this.valueArray = this.valueArray.map(x => Math.floor(Math.random() * 100));
     this.addScrollLogic();
 
-    let testArr = [1,-6,214,34,51,345];
-    this.shellSort(testArr,testArr.length);
+    const testArr = [1, -6, 214, 34, 51, 345];
+    this.shellSort(testArr, testArr.length);
     console.log(testArr);
   }
 
